@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Polluting{% endblock %}
+
+{% block body %}
+    <h1>Create new Polluting</h1>
+
+    {{ include('polluting/_form.html.twig') }}
+
+    <a href="{{ path('polluting_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Opinions{% endblock %}
+
+{% block body %}
+    <h1>Edit Opinions</h1>
+
+    {{ include('opinions/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('opinions_index') }}">back to list</a>
+
+    {{ include('opinions/_delete_form.html.twig') }}
+{% endblock %}

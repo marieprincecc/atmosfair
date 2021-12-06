@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orderbuy{% endblock %}
+
+{% block body %}
+    <h1>Orderbuy</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ orderbuy.id }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ orderbuy.total }}</td>
+            </tr>
+            <tr>
+                <th>TotalTTC</th>
+                <td>{{ orderbuy.totalTTC }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ orderbuy.status }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('orderbuy_index') }}">back to list</a>
+
+    <a href="{{ path('orderbuy_edit', {'id': orderbuy.id}) }}">edit</a>
+
+    {{ include('orderbuy/_delete_form.html.twig') }}
+{% endblock %}

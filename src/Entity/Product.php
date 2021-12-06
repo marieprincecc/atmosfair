@@ -79,6 +79,11 @@ class Product
      */
     private $orderdetails;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pathImage;
+
     public function __construct()
     {
         $this->pollutings = new ArrayCollection();
@@ -276,6 +281,18 @@ class Product
         if ($this->orderdetails->removeElement($orderdetail)) {
             $orderdetail->removeProductId($this);
         }
+
+        return $this;
+    }
+
+    public function getPathImage(): ?string
+    {
+        return $this->pathImage;
+    }
+
+    public function setPathImage(string $pathImage): self
+    {
+        $this->pathImage = $pathImage;
 
         return $this;
     }

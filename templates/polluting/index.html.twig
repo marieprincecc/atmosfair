@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Polluting index{% endblock %}
+
+{% block body %}
+    <h1>Polluting index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Subst</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for polluting in pollutings %}
+            <tr>
+                <td>{{ polluting.id }}</td>
+                <td>{{ polluting.subst }}</td>
+                <td>
+                    <a href="{{ path('polluting_show', {'id': polluting.id}) }}">show</a>
+                    <a href="{{ path('polluting_edit', {'id': polluting.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('polluting_new') }}">Create new</a>
+{% endblock %}

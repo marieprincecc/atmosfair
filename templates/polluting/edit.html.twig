@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Polluting{% endblock %}
+
+{% block body %}
+    <h1>Edit Polluting</h1>
+
+    {{ include('polluting/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('polluting_index') }}">back to list</a>
+
+    {{ include('polluting/_delete_form.html.twig') }}
+{% endblock %}

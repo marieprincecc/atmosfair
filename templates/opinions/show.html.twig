@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opinions{% endblock %}
+
+{% block body %}
+    <h1>Opinions</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ opinion.id }}</td>
+            </tr>
+            <tr>
+                <th>Stars</th>
+                <td>{{ opinion.stars }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ opinion.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('opinions_index') }}">back to list</a>
+
+    <a href="{{ path('opinions_edit', {'id': opinion.id}) }}">edit</a>
+
+    {{ include('opinions/_delete_form.html.twig') }}
+{% endblock %}

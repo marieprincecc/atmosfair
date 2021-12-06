@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opinions index{% endblock %}
+
+{% block body %}
+    <h1>Opinions index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Stars</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for opinion in opinions %}
+            <tr>
+                <td>{{ opinion.id }}</td>
+                <td>{{ opinion.stars }}</td>
+                <td>{{ opinion.content }}</td>
+                <td>
+                    <a href="{{ path('opinions_show', {'id': opinion.id}) }}">show</a>
+                    <a href="{{ path('opinions_edit', {'id': opinion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('opinions_new') }}">Create new</a>
+{% endblock %}
