@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Search\SearchProduct;
+use App\Form\SearchProductType;
 use App\Repository\ProductRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    #[Route('/', name: 'product_index', methods: ['GET'])]
+    #[Route('/', name: 'product_accueil', methods: ['GET'])]
     public function index(ProductRepository $productRepository, PaginatorInterface $paginator,Request $request): Response
     {
 

@@ -20,7 +20,7 @@ class Rooms
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=product::class, inversedBy="rooms")
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="rooms")
      */
     private $productId;
 
@@ -28,6 +28,11 @@ class Rooms
      * @ORM\Column(type="string", length=255)
      */
     private $room;
+
+    public function __toString()
+    {
+        return $this->room;
+    }
 
     public function __construct()
     {

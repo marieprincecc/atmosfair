@@ -8,6 +8,9 @@ private $filterByName;
 
 private $filterByRooms;
 
+private $filterByPolluting;
+
+
 public function getFilterByName()
 {
 return $this->filterByName;

@@ -29,6 +29,11 @@ class Polluting
      */
     private $subst;
 
+    public function __toString()
+    {
+        return $this->subst;
+    }
+
     public function __construct()
     {
         $this->productId = new ArrayCollection();

@@ -20,15 +20,10 @@ class Orderdetails
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=orderbuy::class, inversedBy="orderdetails")
+     * @ORM\ManyToOne(targetEntity=Orderbuy::class, inversedBy="orderdetails")
      * @ORM\JoinColumn(nullable=false)
      */
     private $orderbuyId;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=product::class, inversedBy="orderdetails")
-     */
-    private $productId;
 
     /**
      * @ORM\Column(type="integer")
@@ -47,7 +42,7 @@ class Orderdetails
 
     public function __construct()
     {
-        $this->productId = new ArrayCollection();
+
         $this->invoices = new ArrayCollection();
     }
 
@@ -64,30 +59,6 @@ class Orderdetails
     public function setOrderbuyId(?orderbuy $orderbuyId): self
     {
         $this->orderbuyId = $orderbuyId;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|product[]
-     */
-    public function getProductId(): Collection
-    {
-        return $this->productId;
-    }
-
-    public function addProductId(product $productId): self
-    {
-        if (!$this->productId->contains($productId)) {
-            $this->productId[] = $productId;
-        }
-
-        return $this;
-    }
-
-    public function removeProductId(product $productId): self
-    {
-        $this->productId->removeElement($productId);
 
         return $this;
     }

@@ -65,19 +65,14 @@ class Product
     private $entretient;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Polluting::class, mappedBy="productId")
+     * @ORM\ManyToMany(targetEntity=Polluting::class, mappedBy="productId",cascade={"persist"})
      */
     private $pollutings;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Rooms::class, mappedBy="productId")
+     * @ORM\ManyToMany(targetEntity=Rooms::class, mappedBy="productId", cascade={"persist"})
      */
     private $rooms;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Orderdetails::class, mappedBy="productId")
-     */
-    private $orderdetails;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -88,7 +83,6 @@ class Product
     {
         $this->pollutings = new ArrayCollection();
         $this->rooms = new ArrayCollection();
-        $this->orderdetails = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -258,32 +252,6 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection|Orderdetails[]
-     */
-    public function getOrderdetails(): Collection
-    {
-        return $this->orderdetails;
-    }
-
-    public function addOrderdetail(Orderdetails $orderdetail): self
-    {
-        if (!$this->orderdetails->contains($orderdetail)) {
-            $this->orderdetails[] = $orderdetail;
-            $orderdetail->addProductId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrderdetail(Orderdetails $orderdetail): self
-    {
-        if ($this->orderdetails->removeElement($orderdetail)) {
-            $orderdetail->removeProductId($this);
-        }
-
-        return $this;
-    }
 
     public function getPathImage(): ?string
     {

@@ -5,19 +5,22 @@ namespace App\Controller\Admin;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Search\SearchProduct;
+use App\Form\SearchProductType;
 use App\Repository\ProductRepository;
+use App\MesServices\HandleImageService;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-#[Route('/product')]
+
 class ProductController extends AbstractController
 {
-    #[Route('admin/', name: 'product_index', methods: ['GET'])]
+    #[Route('/admin/home', name: 'product_index')]
     public function index(ProductRepository $productRepository, PaginatorInterface $paginator,Request $request): Response
     {
 
@@ -34,28 +37,39 @@ class ProductController extends AbstractController
         );
 
         
-        return $this->render('admin/product/index.html.twig', [
-            'products' => $productRepository,
+        return $this->render('admin_home/product/index.html.twig', [
+            'products' => $products,
             'form' => $form->createView()
         ]);
         
     }
 
     #[Route('admin/new', name: 'product_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,
+                        HandleImageService $handleImageService): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+        
+            /** @var UploadedFile $file */
+            $file = $form->get('file')->getData();
+            
+            if($file)
+            {
+                $handleImageService->save($file,$product);
+            }
+            
+            
             $entityManager->persist($product);
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);
-        }
+    }
 
-        return $this->renderForm('admin/product/new.html.twig', [
+        return $this->renderForm('admin_home/product/new.html.twig', [
             'product' => $product,
             'form' => $form,
         ]);
@@ -65,7 +79,7 @@ class ProductController extends AbstractController
     public function show(Product $product): Response
     {
         
-        return $this->render('admin/product/show.html.twig', [
+        return $this->render('admin_home/product/show.html.twig', [
             'product' => $product,
        
             ]);
@@ -85,7 +99,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/product/edit.html.twig', [
+        return $this->renderForm('admin_home/product/edit.html.twig', [
             'product' => $product,
             'form' => $form,
         ]);

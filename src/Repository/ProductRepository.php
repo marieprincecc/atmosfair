@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Product;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use App\Search\SearchProduct;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +22,41 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+     /**
+    * @param SearchProduct $search
+    * @return Query
+    */
+    public function findAllBySearchFilter(SearchProduct $search): Query
+    {
+
+        $query = $this->findAllQuery();
+
+        if($search->getFilterByName()) {
+            $query = $query->andWhere('p.name LIKE :name');
+            $query->setParameter('name', '%' . $search->getFilterByName() . '%');
+            } 
+
+        if($search->getFilterByRooms()) {
+             $query = $query->andWhere('p.rooms = :rooms_id');
+            $query->setParameter('rooms_id', $search->getFilterByRooms()->getId());
+        }
+
+        if($search->getFilterByPolluting()) {
+            $query = $query->andWhere('p.polluting = :polluting_id');
+           $query->setParameter('polluting_id', $search->getFilterByPolluting()->getId());
+       }
+
+        $query->addOrderBy('p.id', 'DESC');
+        return $query->getQuery();
+        }
+
+        /**
+        * @return QueryBuilder
+        */
+        public function findAllQuery(): QueryBuilder
+        {
+        return $this->createQueryBuilder('p');
+        } 
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

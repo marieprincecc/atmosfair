@@ -20,21 +20,26 @@ body
     color: #21400B;
 }
 
-btn
+.button
 {
     background-color: rgba(119, 166, 50, 0.75);
     color: #ffffff;
     font-style: italic;
 }
 
-btn:hover{
+.button:hover{
     background-color: rgba(33, 64, 11, 1);
     color: #ffffff;
     font-style: italic;
 
 }
 
-.nav-link:hover
+a{ 
+    color: #21400B;
+    text-decoration: none;
+}
+
+a:hover , .nav-link:hover
 {
     color:rgba(33, 64, 11, 0.5);
 }
