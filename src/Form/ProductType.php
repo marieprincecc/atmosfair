@@ -68,12 +68,14 @@ class ProductType extends AbstractType
             ->add('pollutings' ,EntityType::class,[
                 'label' => 'Polluant',  
                 'class' => Polluting::class,
+                'expanded' => true,
                 'multiple' => true              
                 ])
 
             ->add('rooms' ,EntityType::class,[
                 'label' => 'Salles',  
-                'class' => Rooms::class,   
+                'class' => Rooms::class,  
+                'expanded' => true, 
                 'multiple' => true           
                 ])
             
