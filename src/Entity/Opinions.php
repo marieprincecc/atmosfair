@@ -18,7 +18,7 @@ class Opinions
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="opinions")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="opinions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $userId;
@@ -32,6 +32,7 @@ class Opinions
      * @ORM\Column(type="text")
      */
     private $content;
+
 
     public function getId(): ?int
     {

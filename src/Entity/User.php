@@ -71,6 +71,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $invoices;
 
+    public function __toString()
+    {
+        return $this->id;
+    }
+
     public function __construct()
     {
         $this->opinions = new ArrayCollection();

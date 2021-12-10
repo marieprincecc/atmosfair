@@ -15,15 +15,31 @@
       <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
       </a>
         </div>
-        <div class="nav-item">
-          <a class="nav-link primary-font" href="{{ path('app_login')}}">Se connecter</a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link primary-font" href="{{ path('app_register')}}">Créer Un compte</a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link primary-font" href="{{ path('app_logout')}}">Se déconnecter</a>
-        </div>
+
+          {% if app.user %}
+
+            {% if app.user.roles[0] is same as "ROLE_ADMIN" %}
+
+              <div class="nav-item">
+                <a class="nav-link primary-font" href="{{ path('admin_home')}}">Administration</a>
+              </div>
+
+            {% endif %}  
+
+            <div class="nav-item">
+              <a class="nav-link primary-font" href="{{ path('app_logout')}}">Se déconnecter</a>
+            </div>
+
+            {% else %}
+
+            <div class="nav-item">
+              <a class="nav-link primary-font" href="{{ path('app_login')}}">Se connecter</a>
+            </div>
+            <div class="nav-item">
+              <a class="nav-link primary-font" href="{{ path('app_register')}}">Créer Un compte</a>
+            </div>
+
+          {% endif %}
       
     </div>
   </div>
