@@ -6,28 +6,28 @@ use App\Form\ContactType;
 use App\MesServices\MailerService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
 
+    #[Route('/utility/sendmail', name: 'send_mail_contact')]
 public function contact(Request $request,MailerService $mailerService)
-{
-$form = $this->createForm(ContactType::class);
-
-$form->handleRequest($request);
-
-if($form->isSubmitted() && $form->isValid())
-{
-$data = $form->getData();
-
-$mailerService->sendContactMail($data);
-
+{ 
+    
+    $parameters = $request->request;
+    if (count($parameters) >0 ) {
+        $data=[];
+        
+        $data['content']=$parameters->get('content');
+        $data['mail']=$parameters->get('mail');
+       
+       $mailerService->sendContactMail($data);
+    }
+    $referer = $request->headers->get('referer'); 
+    return new RedirectResponse($referer); 
 
 }
-
-return $this->render("shared/_footer.html.twig",[
-'form' => $form->createView()
-]);
 }
-} 
+

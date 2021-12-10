@@ -20,18 +20,18 @@ class MailerService
         $email = (new TemplatedEmail())
                 ->from('contact@symfonyecommerce.com')
                 ->to('contact@symfonyecommerce.com')
-                ->subject($data['subject'])
+                ->subject($data['content'])
 
                 // path of the Twig template to render
                 ->htmlTemplate('emails/email_contact.html.twig')
 
                 // pass variables (name => value) to the template
                 ->context([
-                    'subject' => $data['subject'],
+                   
                     'content' => $data['content'],
-                    'fullname' => $data['fullname'],
-                    'email_customer' => $data['email'],
-                    'telephone' => $data['telephone']
+                    
+                    'mail' => $data['mail']
+                    
                 ])
             ;
 

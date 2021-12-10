@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    #[Route('/', name: 'product_accueil', methods: ['GET'])]
+    #[Route('/product/liste', name: 'product_customer_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository, PaginatorInterface $paginator,Request $request): Response
     {
 
@@ -32,13 +32,12 @@ class ProductController extends AbstractController
 
         
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository,
+            'products' => $products,
             'form' => $form->createView()
         ]);
         
     }
-
-    #[Route('/{id}', name: 'product_show', methods: ['GET'])]
+    #[Route('product/detail/{id}', name: 'product_user_show', methods: ['GET'])]
     public function show(Product $product): Response
     {
         
