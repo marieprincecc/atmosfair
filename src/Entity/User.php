@@ -10,11 +10,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
- */
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+    /**
+     * @ORM\Entity(repositoryClass=UserRepository::class)
+     * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+     */
+    class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -51,25 +51,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
 
-    /**
-     * @ORM\OneToMany(targetEntity=Opinions::class, mappedBy="userId")
-     */
-    private $opinions;
 
     /**
-     * @ORM\OneToMany(targetEntity=Adress::class, mappedBy="userId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Adress::class, mappedBy="user", orphanRemoval=true)
      */
     private $adresses;
 
     /**
-     * @ORM\OneToMany(targetEntity=Orderbuy::class, mappedBy="userId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Orderbuy::class, mappedBy="user", orphanRemoval=true)
      */
     private $orderbuys;
 
     /**
-     * @ORM\OneToMany(targetEntity=Invoice::class, mappedBy="userId")
+     * @ORM\OneToMany(targetEntity=Invoice::class, mappedBy="user")
      */
     private $invoices;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Opinions::class, mappedBy="user")
+     */
+    private $opinions;
 
     public function __toString()
     {
@@ -209,35 +210,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Opinions[]
-     */
-    public function getOpinions(): Collection
-    {
-        return $this->opinions;
-    }
-
-    public function addOpinion(Opinions $opinion): self
-    {
-        if (!$this->opinions->contains($opinion)) {
-            $this->opinions[] = $opinion;
-            $opinion->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOpinion(Opinions $opinion): self
-    {
-        if ($this->opinions->removeElement($opinion)) {
-            // set the owning side to null (unless already changed)
-            if ($opinion->getUserId() === $this) {
-                $opinion->setUserId(null);
-            }
-        }
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection|Adress[]
@@ -251,7 +224,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->adresses->contains($adress)) {
             $this->adresses[] = $adress;
-            $adress->setUserId($this);
+            $adress->setUser($this);
         }
 
         return $this;
@@ -261,8 +234,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->adresses->removeElement($adress)) {
             // set the owning side to null (unless already changed)
-            if ($adress->getUserId() === $this) {
-                $adress->setUserId(null);
+            if ($adress->getUser() === $this) {
+                $adress->setUser(null);
             }
         }
 
@@ -281,7 +254,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->orderbuys->contains($orderbuy)) {
             $this->orderbuys[] = $orderbuy;
-            $orderbuy->setUserId($this);
+            $orderbuy->setUser($this);
         }
 
         return $this;
@@ -291,8 +264,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->orderbuys->removeElement($orderbuy)) {
             // set the owning side to null (unless already changed)
-            if ($orderbuy->getUserId() === $this) {
-                $orderbuy->setUserId(null);
+            if ($orderbuy->getUser() === $this) {
+                $orderbuy->setUser(null);
             }
         }
 
@@ -311,7 +284,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->invoices->contains($invoice)) {
             $this->invoices[] = $invoice;
-            $invoice->setUserId($this);
+            $invoice->setUser($this);
         }
 
         return $this;
@@ -321,8 +294,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->invoices->removeElement($invoice)) {
             // set the owning side to null (unless already changed)
-            if ($invoice->getUserId() === $this) {
-                $invoice->setUserId(null);
+            if ($invoice->getUser() === $this) {
+                $invoice->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Opinions[]
+     */
+    public function getOpinions(): Collection
+    {
+        return $this->opinions;
+    }
+
+    public function addOpinion(Opinions $opinion): self
+    {
+        if (!$this->opinions->contains($opinion)) {
+            $this->opinions[] = $opinion;
+            $opinion->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinion(Opinions $opinion): self
+    {
+        if ($this->opinions->removeElement($opinion)) {
+            // set the owning side to null (unless already changed)
+            if ($opinion->getUser() === $this) {
+                $opinion->setUser(null);
             }
         }
 

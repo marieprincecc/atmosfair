@@ -27,7 +27,7 @@ class Invoice
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="invoices")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $userId;
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=orderdetails::class, inversedBy="invoices")
@@ -52,14 +52,14 @@ class Invoice
         return $this;
     }
 
-    public function getUserId(): ?user
+    public function getUser(): ?user
     {
-        return $this->userId;
+        return $this->user;
     }
 
-    public function setUserId(?user $userId): self
+    public function setUser(?user $user): self
     {
-        $this->userId = $userId;
+        $this->user = $user;
 
         return $this;
     }

@@ -17,7 +17,7 @@ class AdressType extends AbstractType
             ->add('city')
             ->add('firstname')
             ->add('lastname')
-            ->add('userId')
+            ->add('user')
         ;
     }
 

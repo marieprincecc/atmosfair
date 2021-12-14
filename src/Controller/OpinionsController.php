@@ -25,15 +25,21 @@ class OpinionsController extends AbstractController
     }
 
     #[Route('/opinions/new', name: 'opinions_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager)
     {   
-        /** @var User $userId */ $userId = $this->getUser()->getId(); 
-        
         $opinion = new Opinions();
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+       
+        
+                
         $form = $this->createForm(OpinionsType::class, $opinion);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $opinion->setUser($user);
             $entityManager->persist($opinion);
             $entityManager->flush();
 
@@ -42,18 +48,12 @@ class OpinionsController extends AbstractController
 
         return $this->renderForm('opinions/new.html.twig', [
             'opinion' => $opinion,
-            'form' => $form,
-            'userId'=>$userId
+            'form' => $form
         ]);
     }
 
-    #[Route('opinions/customers/{id}', name: 'opinions_show', methods: ['GET'])]
-    public function show(Opinions $opinion): Response
-    {
-        return $this->render('opinions/show.html.twig', [
-            'opinion' => $opinion,
-        ]);
-    }
+
+   
 
     #[Route('opinions/edit/{id}', name: 'opinions_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Opinions $opinion, EntityManagerInterface $entityManager): Response

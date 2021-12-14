@@ -14,7 +14,7 @@ class OpinionsType extends AbstractType
         $builder
             ->add('stars')
             ->add('content')
-            ->add('userId')
+            
         ;
     }
 

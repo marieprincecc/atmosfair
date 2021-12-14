@@ -13,7 +13,7 @@ class InvoiceType extends AbstractType
     {
         $builder
             ->add('orderId')
-            ->add('userId')
+            ->add('user')
             ->add('orderdetailId')
         ;
     }

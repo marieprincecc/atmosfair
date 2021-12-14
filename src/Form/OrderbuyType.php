@@ -16,7 +16,7 @@ class OrderbuyType extends AbstractType
             ->add('totalTTC')
             ->add('status')
             ->add('date')
-            ->add('userId')
+            ->add('user')
             ->add('adressId')
         ;
     }

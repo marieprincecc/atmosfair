@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\OpinionsRepository;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OpinionsRepository;
 
 /**
  * @ORM\Entity(repositoryClass=OpinionsRepository::class)
@@ -17,11 +18,7 @@ class Opinions
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="opinions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $userId;
+   
 
     /**
      * @ORM\Column(type="integer")
@@ -33,25 +30,21 @@ class Opinions
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="opinions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
-    public function getId(): ?int
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getUserId(): ?user
-    {
-        return $this->userId;
-    }
+  
 
-    public function setUserId(?user $userId): self
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    public function getStars(): ?int
+    public function getStars(): int
     {
         return $this->stars;
     }
@@ -63,7 +56,7 @@ class Opinions
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -71,6 +64,18 @@ class Opinions
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
