@@ -198,18 +198,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this;
     }
 
-    public function getIsAdmin(): ?bool
-    {
-        return $this->isAdmin;
-    }
-
-    public function setIsAdmin(bool $isAdmin): self
-    {
-        $this->isAdmin = $isAdmin;
-
-        return $this;
-    }
-
+   
    
 
     /**

@@ -2,19 +2,25 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
      <div class="nav-item">
-          <a class="navbar-brand " href="#">
-      <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+          <a class="navbar-brand " href="{{ path('home')}}">
+      <img src="{{ asset('assets/img/logo.png')}}" alt="Logo atmosphere" >
       </a>
         </div>
         <div class="nav-item">
           <a class="nav-link active primary-font" aria-current="page" href="{{ path('product_index') }}">Produits</a>
         </div>
         <div class="nav-item">
-          <a class="nav-link primary-font" href="{{ path('product_new')}}">Ajouter</a>
+          <a class="nav-link primary-font" href="{{ path('product_new')}}">Ajouter un produit</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link primary-font" href="{{ path('admin_opinions_index')}}">Gerer les avis</a>
         </div>
          <div class="nav-item">
           <a class="nav-link primary-font" href="{{ path('home')}}">Retour</a>
         </div>
+         <div class="nav-item">
+              <a class="nav-link primary-font" href="{{ path('app_logout')}}">Se déconnecter</a>
+            </div>
         
     </div>
   </div>

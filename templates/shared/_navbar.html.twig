@@ -12,8 +12,8 @@
           <a class="nav-link primary-font" href="#">link-3</a>
         </div>
         <div class="nav-item">
-          <a class="navbar-brand " href="#">
-      <img src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+          <a class="navbar-brand " href="{{ path('home')}}">
+      <img src="{{ asset('assets/img/logo.png')}}" alt="Logo atmosphère" >
       </a>
         </div>
 
@@ -41,6 +41,10 @@
             </div>
 
           {% endif %}
+
+           <div class="nav-item">
+              <a class="nav-link primary-font" href="#"><span class="fas fa-shopping-basket "></span> </a>
+            </div>
       
     </div>
   </div>
