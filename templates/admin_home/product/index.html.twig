@@ -23,8 +23,8 @@
                 <td>{{ product.price | euroPrice}}</td>
                 
                 <td>
-                    <a href="{{ path('product_delete',{'id': product.id}) }}">Supprimer</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
+                    <a href="{{ path('product_delete',{'id': product.id}) }}"> <i class="fas fa-trash-alt"></i> Supprimer</a> <br>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}"> <i class="fas fa-pencil-alt"></i> Modifier</a>
                 </td>
             </tr>
         {% else %}

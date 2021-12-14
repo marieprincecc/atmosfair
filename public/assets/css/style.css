@@ -31,6 +31,7 @@ body
     background-color: rgba(33, 64, 11, 1);
     color: #ffffff;
     font-style: italic;
+    
 
 }
 
@@ -44,3 +45,19 @@ a:hover , .nav-link:hover
     color:rgba(33, 64, 11, 0.5);
 }
 
+#hero{
+    background-image: url('../img/hero.jpg') !important;
+    background-size: cover;
+    height: 90vh;
+    font-style: italic;
+}
+
+.center
+{
+    text-align: center;
+}
+
+#hero .button
+{
+    font-size: larger;
+}
