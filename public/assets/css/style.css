@@ -5,6 +5,14 @@ body
     font-family: 'Playfair Display', serif;
     background-color:#ebeff2 ;
 }
+
+.title
+{
+    font-style: italic;
+    color: #21400B;
+    font-weight: 600;
+}
+
 .primary-bg
 {
     background-color: #ebeff2;
@@ -60,4 +68,10 @@ a:hover , .nav-link:hover
 #hero .button
 {
     font-size: larger;
+}
+
+.imgHome
+{
+    overflow: hidden !important;
+    object-fit: cover !important;
 }

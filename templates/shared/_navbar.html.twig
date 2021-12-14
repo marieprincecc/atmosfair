@@ -1,12 +1,20 @@
 <nav class="navbar navbar-expand-lg secondary-bg">
   <div class="container-fluid">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
         <div class="nav-item">
           <a class="nav-link primary-font" aria-current="page" href="{{ path('product_customer_index')}}">Produits</a>
         </div>
-        <div class="nav-item">
-          <a class="nav-link primary-font" href="#">link-2</a>
-        </div>
+       <div class="dropdown"> 
+       <a class="colortitleBlue" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"> Homme </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"> 
+        <li><a class="dropdown-item" href="#">Vetement</a></li> 
+        <li><a class="dropdown-item" href="#">Protection</a></li> 
+        <li><a class="dropdown-item" href="#">Accessoires</a></li> 
+        </ul> 
+        </div> 
       
         <div class="nav-item">
           <a class="nav-link primary-font" href="#">link-3</a>
@@ -48,4 +56,5 @@
       
     </div>
   </div>
+  
 </nav>
