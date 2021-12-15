@@ -12,8 +12,12 @@ class RoomsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('room')
-            ->add('productId')
+        ->add('rooms' ,EntityType::class,[
+            'label' => 'Salle',  
+            'class' => Rooms::class,
+            'expanded' => true,
+            ])
+            
         ;
     }
 

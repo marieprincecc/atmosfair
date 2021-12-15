@@ -20,7 +20,7 @@ class Polluting
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=product::class, inversedBy="pollutings")
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="pollutings")
      */
     private $productId;
 

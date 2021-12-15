@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Search\SearchProduct;
 use App\Form\SearchProductType;
+use App\Repository\RoomsRepository;
 use App\Repository\ProductRepository;
+use App\Repository\PollutingRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,6 +39,24 @@ class ProductController extends AbstractController
         ]);
         
     }
+
+        /**
+        * @Route("product/polluting/{id}", name="product_polluting_show")
+        */
+        public function productsByPolluting(int $id, PollutingRepository $pollutingRepository)
+        {
+        $polluting = $pollutingRepository->find($id);
+
+        if(!$polluting)
+        {
+        return $this->redirectToRoute("product_customer_index");
+        }
+
+        return $this->render("polluting/show.html.twig",[
+        'polluting' => $polluting
+        ]);
+        } 
+
     #[Route('product/detail/{id}', name: 'product_user_show', methods: ['GET'])]
     public function show(Product $product): Response
     {
