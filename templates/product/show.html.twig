@@ -3,6 +3,9 @@
 
 {% block body %}
     <h1>{{ product.name }}</h1>
+      <div class="col-12 mt-3">
+            {% include "shared/_messages_flash.html.twig" %}
+        </div>
 
     <table class="table">
         <tbody>
@@ -49,8 +52,8 @@
         </tbody>
     </table>
 
-    <a  class="btn button" href="{{ path('product_index') }}">back to list</a>
+    <a  class="btn button" href="{{ path('product_customer_index') }}">back to list</a>
 
-    <a class="btn button" href="#">Ajouter au Panier</a>
+    <a class="btn button" href="{{ path('add_product',{'id' : product.id}) }}">Ajouter au Panier</a>
  
 {% endblock %}

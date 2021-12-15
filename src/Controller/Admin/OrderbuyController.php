@@ -14,15 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OrderbuyController extends AbstractController
 {
-    #[Route('user/orderbuy', name: 'orderbuy_index', methods: ['GET'])]
+    #[Route('admin/orderbuy', name: 'admin_orderbuy_index', methods: ['GET'])]
     public function index(OrderbuyRepository $orderbuyRepository): Response
     {
-        return $this->render('orderbuy/index.html.twig', [
+        return $this->render('admin/orderbuy/index.html.twig', [
             'orderbuys' => $orderbuyRepository->findAll(),
         ]);
     }
 
-    #[Route('user/orderbuy/new', name: 'orderbuy_new', methods: ['GET', 'POST'])]
+    #[Route('admin/orderbuy/new', name: 'admin_orderbuy_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $orderbuy = new Orderbuy();
@@ -33,24 +33,24 @@ class OrderbuyController extends AbstractController
             $entityManager->persist($orderbuy);
             $entityManager->flush();
 
-            return $this->redirectToRoute('orderbuy_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_orderbuy_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('orderbuy/new.html.twig', [
+        return $this->renderForm('admin/orderbuy/new.html.twig', [
             'orderbuy' => $orderbuy,
             'form' => $form,
         ]);
     }
 
-    #[Route('user/orderbuy/{id}', name: 'orderbuy_show', methods: ['GET'])]
+    #[Route('admin/orderbuy/{id}', name: 'admin_orderbuy_show', methods: ['GET'])]
     public function show(Orderbuy $orderbuy): Response
     {
-        return $this->render('orderbuy/show.html.twig', [
+        return $this->render('admin/orderbuy/show.html.twig', [
             'orderbuy' => $orderbuy,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'orderbuy_edit', methods: ['GET', 'POST'])]
+    #[Route('admin/orderbuy/{id}/edit', name: 'admin_orderbuy_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Orderbuy $orderbuy, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(OrderbuyType::class, $orderbuy);
@@ -59,16 +59,16 @@ class OrderbuyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('orderbuy_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_orderbuy_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('orderbuy/edit.html.twig', [
+        return $this->renderForm('admin/orderbuy/edit.html.twig', [
             'orderbuy' => $orderbuy,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'orderbuy_delete', methods: ['POST'])]
+    #[Route('admin/orderbuy/{id}', name: 'admin_orderbuy_delete', methods: ['POST'])]
     public function delete(Request $request, Orderbuy $orderbuy, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$orderbuy->getId(), $request->request->get('_token'))) {
@@ -76,6 +76,6 @@ class OrderbuyController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('orderbuy_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_orderbuy_index', [], Response::HTTP_SEE_OTHER);
     }
 }
