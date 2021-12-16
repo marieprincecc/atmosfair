@@ -1,64 +1,72 @@
 <nav class="navbar navbar-expand-lg secondary-bg">
   <div class="container-fluid">
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
-        <div class="nav-item">
-          <a class="nav-link primary-font" aria-current="page" href="{{ path('product_customer_index')}}">Produits</a>
-        </div>
-      
-       
-       
- 
-
-
-
-
-
-        
-       
-        </div> 
-      
-        <div class="nav-item">
-          <a class="nav-link primary-font" href="#">link-3</a>
-        </div>
-        <div class="nav-item">
-          <a class="navbar-brand " href="{{ path('home')}}">
-      <img src="{{ asset('assets/img/logo.png')}}" alt="Logo atmosphère" >
+  <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
+  <div class="nav-item">
+      <a class="navbar-brand " href="{{ path('home')}}">
+        <img src="{{ asset('assets/img/logo.png')}}" alt="Logo atmosphère" >
       </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link primary-font" aria-current="page" href="{{ path('product_customer_index')}}">Produits</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Polluants
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            {% for polluting in pollutingRepository.findAll() %}
+              <li><a class="dropdown-item" href="{{path('product_polluting_show',{'id':polluting.id})}}">{{polluting.subst}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+    </div>
+      <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Salles
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            {% for rooms in roomsRepository.findAll() %}
+              <li><a class="dropdown-item" href="{{path('product_room_show',{'id':rooms.id})}}">{{rooms.room}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link primary-font" href="#">link-3</a>
+    </div>   
+    <div class="nav-item">
+      <a class="nav-link primary-font" href="#">link-3</a>
+    </div>   
+    
+    {% if app.user %}
+      {% if app.user.roles[0] is same as "ROLE_ADMIN" %}
+        <div class="nav-item">
+          <a class="nav-link primary-font" href="{{ path('admin_home')}}">Administration</a>
         </div>
-
-          {% if app.user %}
-
-            {% if app.user.roles[0] is same as "ROLE_ADMIN" %}
-
-              <div class="nav-item">
-                <a class="nav-link primary-font" href="{{ path('admin_home')}}">Administration</a>
-              </div>
-
-            {% endif %}  
-
-            <div class="nav-item">
-              <a class="nav-link primary-font" href="{{ path('app_logout')}}">Se déconnecter</a>
-            </div>
-
-            {% else %}
-
-            <div class="nav-item">
-              <a class="nav-link primary-font" href="{{ path('app_login')}}">Se connecter</a>
-            </div>
-            <div class="nav-item">
-              <a class="nav-link primary-font" href="{{ path('app_register')}}">Créer Un compte</a>
-            </div>
-
-          {% endif %}
-
-           <div class="nav-item">
-              <a class="nav-link primary-font" href="{{ path('cart_detail') }}"><i class="fas fa-shopping-bag "></i> </a>
-            </div>
-      
+      {% endif %}  
+        <div class="nav-item">
+          <a class="nav-link primary-font" href="{{ path('app_logout')}}">Se déconnecter</a>
+        </div>
+    {% else %}
+      <div class="nav-item">
+        <a class="nav-link primary-font" href="{{ path('app_login')}}">Se connecter</a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link primary-font" href="{{ path('app_register')}}">Créer Un compte</a>
+      </div>
+    {% endif %}
+        <div class="nav-item">
+          <a class="nav-link primary-font" href="{{ path('cart_detail') }}"><i class="fas fa-shopping-bag "></i> </a>
+        </div>
     </div>
   </div>
-  
 </nav>

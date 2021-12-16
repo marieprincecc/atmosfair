@@ -43,9 +43,10 @@ class ProductController extends AbstractController
         /**
         * @Route("product/polluting/{id}", name="product_polluting_show")
         */
-        public function productsByPolluting(int $id, PollutingRepository $pollutingRepository)
+        public function productsByPolluting(int $id, PollutingRepository $pollutingRepository, ProductRepository $productRepository)
         {
         $polluting = $pollutingRepository->find($id);
+        
 
         if(!$polluting)
         {
@@ -53,7 +54,25 @@ class ProductController extends AbstractController
         }
 
         return $this->render("polluting/show.html.twig",[
-        'polluting' => $polluting
+        'products' => $polluting->getProductId()
+        ]);
+        } 
+
+         /**
+        * @Route("product/room/{id}", name="product_room_show")
+        */
+        public function productsByRoom(int $id, RoomsRepository $roomsRepository, ProductRepository $productRepository)
+        {
+        $room = $roomsRepository->find($id);
+        
+
+        if(!$room)
+        {
+        return $this->redirectToRoute("product_customer_index");
+        }
+
+        return $this->render("rooms/show.html.twig",[
+        'products' => $room->getProductId()
         ]);
         } 
 

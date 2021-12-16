@@ -61,8 +61,22 @@ class ProductController extends AbstractController
             {
                 $handleImageService->save($file,$product);
             }
-            
-            
+
+            /** @var Polluting[] $pollutings  */
+            $pollutings = $form->get('pollutings')->getData();
+            if (count($pollutings)>0) {
+                foreach ($pollutings as $polluting) {
+                    $polluting->addProductId($product);
+                }
+            }
+
+             /** @var Rooms[] $rooms  */
+             $rooms = $form->get('rooms')->getData();
+             if (count($rooms)>0) {
+                 foreach ($rooms as $room) {
+                     $room->addProductId($product);
+                 }
+             }
             $entityManager->persist($product);
             $entityManager->flush();
             
