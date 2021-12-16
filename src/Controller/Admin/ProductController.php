@@ -57,10 +57,12 @@ class ProductController extends AbstractController
             /** @var UploadedFile $file */
             $file = $form->get('file')->getData();
             
-            if($file)
+            if(!$file)
             {
-                $handleImageService->save($file,$product);
+                $this->addFlash('danger','Veuillez ajouter une image.');
+               return $this->redirectToRoute('product_new'); 
             }
+            $handleImageService->save($file,$product);
 
             /** @var Polluting[] $pollutings  */
             $pollutings = $form->get('pollutings')->getData();

@@ -3,7 +3,7 @@
 
 {% block body %}
     <h1>Create new Product</h1>
-
+    {% include "shared/_messages_flash.html.twig" %}
     {{ include('admin_home/product/_form.html.twig') }}
 
     <a href="{{ path('product_index') }}">back to list</a>
