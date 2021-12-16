@@ -40,6 +40,12 @@ class Orderdetails
      */
     private $invoices;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Product::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $product;
+
     public function __construct()
     {
 
@@ -113,6 +119,18 @@ class Orderdetails
                 $invoice->setOrderdetailId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): self
+    {
+        $this->product = $product;
 
         return $this;
     }

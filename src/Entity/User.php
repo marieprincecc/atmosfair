@@ -55,7 +55,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     /**
      * @ORM\OneToMany(targetEntity=Adress::class, mappedBy="user", orphanRemoval=true)
      */
-    private $adresses;
+    private $adress;
 
     /**
      * @ORM\OneToMany(targetEntity=Orderbuy::class, mappedBy="user", orphanRemoval=true)
@@ -80,7 +80,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
     public function __construct()
     {
         $this->opinions = new ArrayCollection();
-        $this->adresses = new ArrayCollection();
         $this->orderbuys = new ArrayCollection();
         $this->invoices = new ArrayCollection();
     }
@@ -198,39 +197,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this;
     }
 
-   
-   
-
-    /**
-     * @return Collection|Adress[]
-     */
-    public function getAdresses(): Collection
-    {
-        return $this->adresses;
-    }
-
-    public function addAdress(Adress $adress): self
-    {
-        if (!$this->adresses->contains($adress)) {
-            $this->adresses[] = $adress;
-            $adress->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAdress(Adress $adress): self
-    {
-        if ($this->adresses->removeElement($adress)) {
-            // set the owning side to null (unless already changed)
-            if ($adress->getUser() === $this) {
-                $adress->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Orderbuy[]
      */
@@ -317,6 +283,26 @@ use Symfony\Component\Security\Core\User\UserInterface;
                 $opinion->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adresse
+     */ 
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+
+    /**
+     * Set the value of adresse
+     *
+     * @return  self
+     */ 
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
 
         return $this;
     }

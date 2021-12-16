@@ -7,32 +7,67 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ orderbuy.id }}</td>
-            </tr>
-            <tr>
-                <th>Total</th>
-                <td>{{ orderbuy.total }}</td>
-            </tr>
-            <tr>
-                <th>TotalTTC</th>
-                <td>{{ orderbuy.totalTTC }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ orderbuy.status }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
-            </tr>
+             {% for item in detailCart %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="d-flex flex-column align-items-center justify-content-center">
+                                                        <p>{{ item.product.name }}</p>
+                                                        <a class="btn btn-link text-danger btn-sm" href="{{ path('remove_item_cart',{'id': item.product.id }) }}"><i class="fas fa-trash"></i> Supprimer</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ item.product.price | euroPrice }}</td>
+                                            <td>
+                                                <a class="btn btn-dark" href="{{ path('decrement_product_cart',{'id': item.product.id}) }}"><i class="fas fa-minus-circle"></i></a>
+                                                <button class="btn btn-light">{{ item.qty }}</button>
+                                                <a class="btn btn-dark" href="{{ path('add_product',{'id': item.product.id}) }}?returnToCart=true"><i class="fas fa-plus-circle"></i></a>
+                                            </td>
+                                            <td>{{ item.total | euroPrice }}</td>
+                                        </tr>
+                                    {% endfor%}
         </tbody>
     </table>
+     <div class="col-sm-12 col-md-12 col-lg-6 mt-3">
+            {% if app.user %}
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Adresse de livraison</h3>
+                    </div>
+                    <div class="card-body">
+                      {{ include('adress/_form.html.twig') }}
+                    </div>
+                </div>
 
-    <a href="{{ path('orderbuy_index') }}">back to list</a>
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h3 class="text-center">Paiement en ligne</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if app.user.adress is not same as null %}
+                            <form action="{{ path('create_checkout_session') }}" method="POST">
+                                <button type="submit" id="checkout-button" class="btn btn-success w-100">Paiement sur stripe</button>
+                            </form>
+                        {% else %}
+                            <p>Veuillez configurer votre adresse pour pouvoir finaliser la commande.</p>
+                        {% endif %}
+                    </div>
+                </div>
 
-    <a href="{{ path('orderbuy_edit', {'id': orderbuy.id}) }}">edit</a>
+            {% else %}
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Veuillez vous connecter</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Déjà un compte ? <a href="{{ path('app_login' )}}" class="btn btn-primary">Veuillez vous connecter</a></p>
+                        <hr>
+                        <p>Pas encore de compte ? <a href="{{ path('app_register' )}}" class="btn btn-link">Veuillez en créer un</a></p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
 
-    {{ include('orderbuy/_delete_form.html.twig') }}
+   
+    
 {% endblock %}

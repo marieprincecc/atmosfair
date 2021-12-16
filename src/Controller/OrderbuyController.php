@@ -50,7 +50,7 @@ class OrderbuyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'orderbuy_edit', methods: ['GET', 'POST'])]
+    #[Route('admin/orderbuy/{id}/edit', name: 'orderbuy_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Orderbuy $orderbuy, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(OrderbuyType::class, $orderbuy);
@@ -68,7 +68,7 @@ class OrderbuyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'orderbuy_delete', methods: ['POST'])]
+    #[Route('admin/orderbuy/{id}', name: 'orderbuy_delete', methods: ['POST'])]
     public function delete(Request $request, Orderbuy $orderbuy, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$orderbuy->getId(), $request->request->get('_token'))) {

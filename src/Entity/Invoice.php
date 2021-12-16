@@ -18,19 +18,19 @@ class Invoice
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=orderbuy::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Orderbuy::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $orderId;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="invoices")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="invoices")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=orderdetails::class, inversedBy="invoices")
+     * @ORM\ManyToOne(targetEntity=Orderdetails::class, inversedBy="invoices")
      * @ORM\JoinColumn(nullable=false)
      */
     private $orderdetailId;

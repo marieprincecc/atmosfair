@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Adress;
+use App\Form\AdressType;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\MesServices\CartService\CartItem;
 use App\MesServices\CartService\CartService;
 use Symfony\Component\HttpFoundation\Request;
@@ -91,4 +94,51 @@ class CartController extends AbstractController
             $this->addFlash("success","La quantité du produit a bien été décrémentée.");
             return $this->redirectToRoute("cart_detail");
             } 
-        }
+
+            /**
+             * @Route("customer/recap/order",name="customer_recap_order")
+             */
+            public function recap(CartService $cartService,Request $request,
+            EntityManagerInterface $em)
+            {
+                $detailCart = $cartService->getDetailedCartItems();
+
+                $totalCart = $cartService->getTotal();
+                $totalTTC = $cartService->getTotalTTC();
+
+                
+                
+                /** @var User $user */
+                $user = $this->getUser();
+
+                if($user)
+                {
+                    if($user->getAdress())
+                    {
+                        $adress = $user->getAdress();
+                    }
+                }
+                $adress = new Adress();
+                $form = $this->createForm(AdressType::class, $adress);
+
+                $form->handleRequest($request);
+
+                if($form->isSubmitted() && $form->isValid())
+                {
+                    if(!$user->getAdress())
+                    {
+                        $adress->setUser($user->getId());
+                        $em->persist($adress);
+                    }
+                    $this->addFlash("success","L'adresse a bien été configurée.");
+                    $em->flush();
+
+                    return $this->redirectToRoute("customer_recap_order");
+                }
+                return $this->render("orderbuy/show.html.twig",[
+                    'detailCart' => $detailCart,
+                    'form' => $form->createView(),
+                    'totalCart' => $totalCart
+                ]);
+    }
+}

@@ -19,8 +19,8 @@ class Adress
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="adresses")
+     /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="adress", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

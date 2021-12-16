@@ -20,13 +20,13 @@ class Orderbuy
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="orderbuys")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="orderbuys")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=adress::class, inversedBy="orderbuys")
+     * @ORM\ManyToOne(targetEntity=Adress::class, inversedBy="orderbuys")
      * @ORM\JoinColumn(nullable=false)
      */
     private $adressId;

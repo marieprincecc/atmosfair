@@ -111,6 +111,22 @@ class CartService
         return $total;
     }
 
+    public function getTotalTTC()
+    {
+        $total = $this->getTotal();
+        $livraison = 0;
+        if ($total<29) {
+            $livraison = 5;
+        }
+        else{
+            $livraison = 0;
+        }
+        $totalTTC = $total + $livraison;
+        
+
+        return $totalTTC;
+    }
+
     public function removeItem(int $id)
     {
        $cart = $this->getCart();
@@ -149,4 +165,9 @@ class CartService
             }
         }
     } 
+
+    public function emptyCart()
+    {
+        $this->saveCart([]);
+    }
 }
