@@ -37,7 +37,7 @@ class HandleImageService
         );
 
         //J'enregistre le chemin qui me ramene vers ce fichier en bdd
-        //Je set le ImagePath (propriété de catégorie)
+        //Je set le pathImage (propriété de catégorie)
         $entity->setPathImage('/uploads/images/' . $uniqFilename);
     }
 
