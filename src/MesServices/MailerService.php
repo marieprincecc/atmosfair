@@ -41,7 +41,7 @@ class MailerService
         $this->mailer->send($email);
     }
 
-    public function sendCommandMail(User $user,Orderbuy $orderbuy, Orderdetails $orderdetails)
+    public function sendCommandMail(User $user,Orderbuy $orderbuy, $orderdetails)
     {
         $liste=[];
         foreach ($orderdetails as $items){

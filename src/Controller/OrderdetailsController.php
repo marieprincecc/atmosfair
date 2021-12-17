@@ -68,7 +68,7 @@ class OrderdetailsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'orderdetails_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'orderdetails_delete', methods: ['POST'])]
     public function delete(Request $request, Orderdetails $orderdetail, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$orderdetail->getId(), $request->request->get('_token'))) {

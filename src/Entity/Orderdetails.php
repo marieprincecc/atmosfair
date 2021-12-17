@@ -33,7 +33,7 @@ class Orderdetails
     /**
      * @ORM\Column(type="integer")
      */
-    private $priceTotal;
+    private $priceTotal = 0;
 
     /**
      * @ORM\OneToMany(targetEntity=Invoice::class, mappedBy="orderdetailId")

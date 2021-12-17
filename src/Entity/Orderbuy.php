@@ -2,16 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderbuyRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderbuyRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=OrderbuyRepository::class)
+ * @ORM\HasLifecycleCallbacks 
  */
 class Orderbuy
 {
+    public const PENDING = "en cours de validation";
+
+    public const SEND = "envoyé";
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -44,7 +50,7 @@ class Orderbuy
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $status;
+    private $status = self::PENDING;
 
     /**
      * @ORM\Column(type="date")
@@ -56,10 +62,26 @@ class Orderbuy
      */
     private $orderdetails;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPayed = false;
+
     public function __construct()
     {
         $this->orderdetails = new ArrayCollection();
     }
+
+    /**
+    * @ORM\PrePersist
+    */
+    public function prePersist()
+    {
+    if(empty($this->date))
+    {
+    $this->date = new DateTime();
+    }
+    } 
 
     public function getId(): ?int
     {
@@ -164,6 +186,18 @@ class Orderbuy
                 $orderdetail->setOrderbuyId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsPayed(): ?bool
+    {
+        return $this->isPayed;
+    }
+
+    public function setIsPayed(bool $isPayed): self
+    {
+        $this->isPayed = $isPayed;
 
         return $this;
     }

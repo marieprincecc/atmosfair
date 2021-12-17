@@ -68,7 +68,7 @@ class OrderbuyController extends AbstractController
         ]);
     }
 
-    #[Route('admin/orderbuy/{id}', name: 'admin_orderbuy_delete', methods: ['POST'])]
+    #[Route('admin/orderbuy/{id}/delete', name: 'admin_orderbuy_delete', methods: ['POST'])]
     public function delete(Request $request, Orderbuy $orderbuy, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$orderbuy->getId(), $request->request->get('_token'))) {

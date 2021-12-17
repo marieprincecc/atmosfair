@@ -53,7 +53,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 
     /**
-     * @ORM\OneToMany(targetEntity=Adress::class, mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity=Adress::class, mappedBy="user", orphanRemoval=true)
      */
     private $adress;
 
@@ -287,23 +287,20 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this;
     }
 
-    /**
-     * Get the value of adresse
-     */ 
-    public function getAdress()
+    public function getAdress(): ?Adress
     {
-        return $this->adress;
+    return $this->adress;
     }
 
-    /**
-     * Set the value of adresse
-     *
-     * @return  self
-     */ 
-    public function setAdress($adress)
+    public function setAdress(Adress $adress): self
     {
-        $this->adress = $adress;
-
-        return $this;
+    // set the owning side of the relation if necessary
+    if ($adress->getUser() !== $this) {
+    $adress->setUser($this);
     }
+
+    $this->adress = $adress;
+
+    return $this;
+    } 
 }

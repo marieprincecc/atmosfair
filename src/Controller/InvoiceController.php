@@ -42,7 +42,7 @@ class InvoiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'invoice_show', methods: ['GET'])]
+    #[Route('show/{id}', name: 'invoice_show', methods: ['GET'])]
     public function show(Invoice $invoice): Response
     {
         return $this->render('invoice/show.html.twig', [
@@ -68,7 +68,7 @@ class InvoiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'invoice_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'invoice_delete', methods: ['POST'])]
     public function delete(Request $request, Invoice $invoice, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$invoice->getId(), $request->request->get('_token'))) {

@@ -4,20 +4,26 @@ namespace App\Controller;
 
 use Stripe\Stripe;
 use App\Entity\User;
+use Stripe\LoginLink;
 use App\Entity\Adress;
 use App\Entity\Orderbuy;
 use App\Entity\Orderdetails;
 use Stripe\Checkout\Session;
 use App\MesServices\MailerService;
+use App\Repository\UserRepository;
+use App\MesServices\OrderbuyService;
+use App\Repository\OrderbuyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\MesServices\CartService\CartService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
 class StripeController extends AbstractController
 {
     #[Route('/create-checkout-session', name: 'create_checkout_session')]  
-    public function createSession(CartService $cartService)
+    public function createSession(CartService $cartService, OrderbuyService $orderbuyService)
     {
         Stripe::setApiKey('sk_test_51IBjOmJxItuCvN48kVDdR9Tg52Npf4IJydX0TFxyioJFxo5vdlObzoYYTmiVZ2BD2XqGQkvsWaj8UNNzEz3ekgMo00jPcW004c');
 
@@ -25,7 +31,8 @@ class StripeController extends AbstractController
         
         /** @var User $user */
         $user = $this->getUser();
-
+        $orderbuyService->create($user);
+        $id = $user->getId();
         /** @var CartRealProduct[] $detailCart */
         $detailCart = $cartService->getDetailedCartItems();
 
@@ -57,51 +64,46 @@ class StripeController extends AbstractController
                 $productForStripe
             ],
             'mode' => 'payment',
-              'success_url' => $domain . '/paiementreussi',
+              'success_url' => $domain . '/redirectionPaiementReussi/' . $user->getId(), 
               'cancel_url' => $domain . '/paiementechoue',
           ]);
 
           return $this->redirect($checkout_session->url);
     }
 
+        /**
+        * @Route("/redirectionPaiementReussi/{id}", name="redirection_paiement_reussi")
+        */
+        public function redirectionPaiementReussi(int $id ,LoginLinkHandlerInterface $loginLinkHandler, UserRepository $userRepository, Request $request)
+        { 
+        $user = $userRepository->find($id);
+        $loginLinkDetails = $loginLinkHandler->createLoginLink($user);
+        $loginLink = $loginLinkDetails->getUrl();
+        return $this->redirect($loginLink);
+        } 
+
     #[Route('/paiementreussi', name: 'payment_success')] 
-    public function paymentSuccess(CartService $cartService,EntityManagerInterface $em,
-                                MailerService $mailerService)
-    {
+    public function paymentSuccess(UserRepository $userRepository, CartService $cartService,EntityManagerInterface $em,
+                                MailerService $mailerService, OrderbuyRepository $orderbuyRepository)
+    {   
+        
         /** @var User $user */
         $user = $this->getUser();
         $adressUser = $user->getAdress();
-
-        /** @var Orderbuy $orderbuy */
-        
-        $orderbuy = new Orderbuy();
-        $orderbuy->setUser($user);
-        $orderbuy->setTotal($cartService->getTotal());
-        $orderbuy->setTotalTTC($cartService->getTotalTTC());
-        $orderbuy->setAdressId($adressUser);
-        $em->persist($orderbuy);
-        $em->flush();
-        
-        $orderdetails = new Orderdetails();
-
-         /** @var CartRealProduct[] $detailCart */
-         $detailCart = $cartService->getDetailedCartItems();
-
-         foreach ($detailCart as $item) {
-            $orderdetails = new Orderdetails();
-            $orderdetails->setProduct($item->getProduct());
-            $orderdetails->setQuantity($item->getQty());
-            $orderdetails->setOrderbuyId($orderbuy);
-            $em->persist($orderdetails);
-         }
-
+        $orderbuy = $orderbuyRepository->findOneBy([
+            'user' => $user
+            ],[
+            'date' => 'DESC'
+            ]);
+            
+            $orderbuy->setIsPayed(1); 
          $em->flush();
-
+            $orderdetails = $orderbuy->getOrderdetails();
          $mailerService->sendCommandMail($user, $orderbuy, $orderdetails);
 
          $this->addFlash("success","Votre commande a bien été pris en compte.");
          $cartService->emptyCart();
-         return $this->redirectToRoute("cart_detail");
+         return $this->redirectToRoute("thanks");
     } 
 
     #[Route('/paiementechoue', name: 'payment_cancel')] 

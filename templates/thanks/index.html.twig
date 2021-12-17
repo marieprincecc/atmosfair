@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Thank you{% endblock %}
+
+
+{% block body %}
+
+<div  id="thanks">
+    <div class="row">
+        <div class="col">
+            {% include "shared/_messages_flash.html.twig" %}
+        </div>
+    </div>
+     
+            <img class="m-5" width="65%" src="{{ asset('assets/img/thank-you')}}" alt="image de remerciment">           
+        
+     <div class="row">
+        <a class= "btn button mb-5" href="{{ path('home')}}">Retour a l'accueil</a>
+    </div>
+</div>
+
+  
+
+{% endblock %}

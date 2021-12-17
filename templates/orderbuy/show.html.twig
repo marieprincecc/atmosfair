@@ -26,9 +26,7 @@
                                             <td>{{ item.total | euroPrice }}</td>
                                         </tr>
                                     {% endfor%}
-        </tbody>
-    </table>
-     <div class="col-sm-12 col-md-12 col-lg-6 mt-3">
+                                     <div class="col-sm-12 col-md-12 col-lg-6 mt-3">
             {% if app.user %}
                 <div class="card">
                     <div class="card-header">
@@ -67,6 +65,11 @@
                 </div>
             {% endif %}
         </div>
+        </tbody>
+    </table>
+     <form action="{{ path('create_checkout_session') }}" method="POST">
+                                <button type="submit" id="checkout-button" class="btn btn-success w-100">Paiement sur stripe</button>
+    </form>
 
    
     

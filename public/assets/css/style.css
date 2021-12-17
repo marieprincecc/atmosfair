@@ -75,3 +75,12 @@ a:hover , .nav-link:hover
     overflow: hidden !important;
     object-fit: cover !important;
 }
+
+#thanks{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   
+    font-style: italic;
+}
