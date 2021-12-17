@@ -41,12 +41,9 @@ class MailerService
         $this->mailer->send($email);
     }
 
-    public function sendCommandMail(User $user,Orderbuy $orderbuy, $orderdetails)
+    public function sendCommandMail(User $user,Orderbuy $orderbuy)
     {
-        $liste=[];
-        foreach ($orderdetails as $items){
-            $liste[]=$items;
-        }
+        
         $email = (new TemplatedEmail())
         ->from('support@symfonyecommerce.com')
         ->to($user->getEmail())
@@ -59,7 +56,7 @@ class MailerService
         // pass variables (name => value) to the template
         ->context([
             
-            'contents' => $liste,
+            'contents' => $orderbuy->getOrderdetails(),
             'user' => $user,
             'address' => $user->getAdress(),
             'total' => $orderbuy->getTotal(),

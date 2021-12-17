@@ -98,8 +98,7 @@ class StripeController extends AbstractController
             
             $orderbuy->setIsPayed(1); 
          $em->flush();
-            $orderdetails = $orderbuy->getOrderdetails();
-         $mailerService->sendCommandMail($user, $orderbuy, $orderdetails);
+         $mailerService->sendCommandMail($user, $orderbuy);
 
          $this->addFlash("success","Votre commande a bien été pris en compte.");
          $cartService->emptyCart();
