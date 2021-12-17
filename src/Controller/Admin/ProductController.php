@@ -135,9 +135,12 @@ class ProductController extends AbstractController
     }
 
     #[Route('admin/{id}/delete', name: 'product_delete', methods: ['GET','POST'])]
-    public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Product $product, EntityManagerInterface $entityManager, HandleImageService $handleImageService): Response
     {
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+
+            $originalImagePath = $product->getPathImage();
+            $handleImageService->destroy($originalImagePath);
             $entityManager->remove($product);
             $entityManager->flush();
         }

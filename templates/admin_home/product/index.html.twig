@@ -23,7 +23,8 @@
                 <td>{{ product.price | euroPrice}}</td>
                 
                 <td>
-                    <a href="{{ path('product_delete',{'id': product.id}) }}"> <i class="fas fa-trash-alt"></i> Supprimer</a> <br>
+                        {{ include('admin_home/product/_delete_form.html.twig') }}
+  <br>
                     <a href="{{ path('product_edit', {'id': product.id}) }}"> <i class="fas fa-pencil-alt"></i> Modifier</a>
                 </td>
             </tr>

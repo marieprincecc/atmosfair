@@ -17,35 +17,16 @@ class OrderbuyController extends AbstractController
     #[Route('admin/orderbuy', name: 'admin_orderbuy_index', methods: ['GET'])]
     public function index(OrderbuyRepository $orderbuyRepository): Response
     {
-        return $this->render('admin/orderbuy/index.html.twig', [
+        return $this->render('admin_home/orderbuy/index.html.twig', [
             'orderbuys' => $orderbuyRepository->findAll(),
         ]);
     }
 
-    #[Route('admin/orderbuy/new', name: 'admin_orderbuy_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $orderbuy = new Orderbuy();
-        $form = $this->createForm(OrderbuyType::class, $orderbuy);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($orderbuy);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin_orderbuy_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin/orderbuy/new.html.twig', [
-            'orderbuy' => $orderbuy,
-            'form' => $form,
-        ]);
-    }
 
     #[Route('admin/orderbuy/{id}', name: 'admin_orderbuy_show', methods: ['GET'])]
     public function show(Orderbuy $orderbuy): Response
     {
-        return $this->render('admin/orderbuy/show.html.twig', [
+        return $this->render('admin_home/orderbuy/show.html.twig', [
             'orderbuy' => $orderbuy,
         ]);
     }
@@ -62,13 +43,13 @@ class OrderbuyController extends AbstractController
             return $this->redirectToRoute('admin_orderbuy_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/orderbuy/edit.html.twig', [
+        return $this->renderForm('admin_home/orderbuy/edit.html.twig', [
             'orderbuy' => $orderbuy,
             'form' => $form,
         ]);
     }
 
-    #[Route('admin/orderbuy/{id}/delete', name: 'admin_orderbuy_delete', methods: ['POST'])]
+    #[Route('admin/orderbuy/{id}/delete', name: 'admin_orderbuy_delete', methods: ['GET','POST'])]
     public function delete(Request $request, Orderbuy $orderbuy, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$orderbuy->getId(), $request->request->get('_token'))) {

@@ -52,4 +52,12 @@ class HandleImageService
              unlink($fileOldImage);
          }
     }
+
+        public function destroy(string $originalImagePath)
+    {
+        $fileOldImage = $this->containerBag->get('app_images_directory') . '/../..' . $originalImagePath;
+        
+             unlink($fileOldImage);
+         
+    }
 }
