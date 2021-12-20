@@ -6,10 +6,11 @@ use App\Entity\Orderbuy;
 use App\Form\OrderbuyType;
 use App\Repository\OrderbuyRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\OrderdetailsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class OrderbuyController extends AbstractController
@@ -24,12 +25,14 @@ class OrderbuyController extends AbstractController
 
 
     #[Route('admin/orderbuy/{id}', name: 'admin_orderbuy_show', methods: ['GET'])]
-    public function show(Orderbuy $orderbuy): Response
+    public function show(int $id, Orderbuy $orderbuy, OrderdetailsRepository $orderdetailsRepository): Response
     {
         return $this->render('admin_home/orderbuy/show.html.twig', [
             'orderbuy' => $orderbuy,
+            'orderdetails' => $orderdetailsRepository->find($id),
         ]);
     }
+
 
     #[Route('admin/orderbuy/{id}/edit', name: 'admin_orderbuy_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Orderbuy $orderbuy, EntityManagerInterface $entityManager): Response

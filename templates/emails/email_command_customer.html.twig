@@ -31,7 +31,7 @@
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="{{ content.product.imagePath }}" alt="{{ content.product.name }}" class="imageProductCart">
+                            <img src="{{ content.product.pathImage }}" alt="{{ content.product.name }}" class="imageProductCart">
                             <div class="d-flex flex-column align-items-center justify-content-center">
                                 <p>{{ content.product.name }}</p>
                             </div>
@@ -39,9 +39,9 @@
                     </td>
                     <td>{{ content.product.price | euroPrice }}</td>
                     <td>
-                        <button class="btn btn-light">{{ content.qty }}</button>
+                        <button class="btn btn-light">{{ content.quantity }}</button>
                     </td>
-                    <td>{{ content.total | euroPrice }}</td>
+                    <td>{{ content.priceTotal | euroPrice }}</td>
                 </tr>
             {% endfor%}
             <tr>

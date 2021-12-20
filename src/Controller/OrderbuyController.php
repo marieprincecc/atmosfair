@@ -11,6 +11,7 @@ use App\Entity\Orderdetails;
 use App\Repository\AdressRepository;
 use App\Repository\OrderbuyRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\OrderdetailsRepository;
 use App\MesServices\CartService\CartService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,10 +32,11 @@ class OrderbuyController extends AbstractController
    
 
     #[Route('user/orderbuy/{id}', name: 'orderbuy_show', methods: ['GET'])]
-    public function show(Orderbuy $orderbuy): Response
+    public function show(int $id, Orderbuy $orderbuy, OrderdetailsRepository $orderdetailsRepository): Response
     {
         return $this->render('orderbuy/show.html.twig', [
             'orderbuy' => $orderbuy,
+            'orderdetails' => $orderdetailsRepository->findAll($id),
         ]);
     }
 

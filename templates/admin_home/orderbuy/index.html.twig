@@ -25,7 +25,7 @@
                 <td>{{ orderbuy.status }}</td>
                 <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('orderbuy_show', {'id': orderbuy.id}) }}">show</a>
+                    <a href="{{ path('admin_orderbuy_show', {'id': orderbuy.id}) }}">show</a>
                         {{ include('admin_home/orderbuy/_delete_form.html.twig') }}
 
                     <a href="{{ path('admin_orderbuy_edit', {'id': orderbuy.id}) }}"><i class="fas fa-pencil-alt"></i> Modifier</a>

@@ -25,13 +25,43 @@
                 <td>{{ orderbuy.status }}</td>
                 <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
                 <td>
-{{ include('orderbuy/_delete_form.html.twig') }}
                     <a href="{{ path('admin_orderbuy_edit', {'id': orderbuy.id}) }}">edit</a>
                 </td>
             </tr>
         
         </tbody>
     </table>
+   
+    <h1>Orderdetails index</h1>
 
-    <a href="{{ path('orderbuy_new') }}">Create new</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantity</th>
+                <th>PriceTotal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for orderdetail in orderdetails %}
+            <tr>
+                <td>{{ orderdetail.id }}</td>
+                <td>{{ orderdetail.quantity }}</td>
+                <td>{{ orderdetail.priceTotal }}</td>
+                <td>
+                  
+                    <a href="{{ path('orderdetails_edit', {'id': orderdetail.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+  
+
 {% endblock %}
