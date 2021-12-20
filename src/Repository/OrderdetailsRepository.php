@@ -22,11 +22,11 @@ class OrderdetailsRepository extends ServiceEntityRepository
     // /**
     //  * @return Orderdetails[] Returns an array of Orderdetails objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findByOrder($value)
     {
         return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
+            ->andWhere('o.orderbuyId = :val')
             ->setParameter('val', $value)
             ->orderBy('o.id', 'ASC')
             ->setMaxResults(10)
@@ -34,7 +34,7 @@ class OrderdetailsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Orderdetails

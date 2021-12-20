@@ -39,7 +39,7 @@ class OrderbuyController extends AbstractController
     {  
         return $this->render('orderbuy/order_show.html.twig', [
             'orderbuy' => $orderbuy,
-            'orderdetails' => $orderdetailsRepository->findAll($id),
+            'orderdetails' => $orderdetailsRepository->findByOrder($id),
         ]);
     }
 

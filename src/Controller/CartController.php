@@ -106,19 +106,19 @@ class CartController extends AbstractController
                 $totalCart = $cartService->getTotal();
                 $totalTTC = $cartService->getTotalTTC();
 
-                
+                $adress = new Adress();
                 
                 /** @var User $user */
                 $user = $this->getUser();
 
                 if($user)
-                {
-                    if($user->getAdress())
-                    {
-                        $adress = $user->getAdress();
-                    }
-                }
-                $adress = new Adress();
+        {
+            if($user->getAdress())
+            {
+                $adress = $user->getAdress();
+            }
+        }
+                
                 $form = $this->createForm(AdressType::class, $adress);
 
                 $form->handleRequest($request);
@@ -127,13 +127,13 @@ class CartController extends AbstractController
                 {
                     if(!$user->getAdress())
                     {
-                        $adress->setUser($user->getId());
+                        $adress->setUser($user);
                         $em->persist($adress);
                     }
                     $this->addFlash("success","L'adresse a bien été configurée.");
                     $em->flush();
 
-                    return $this->redirectToRoute("customer_recap_order");
+                   
                 }
                 return $this->render("orderbuy/recap_show.html.twig",[
                     'detailCart' => $detailCart,
