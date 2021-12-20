@@ -56,6 +56,20 @@
        <div class="nav-item">
           <a class="nav-link primary-font" href="{{ path('orderbuy_index')}}">Mes commandes</a>
         </div>
+         <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link primary-font dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Avis
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+           
+              <li><a class="dropdown-item" href="{{path('opinions_new')}}">Laisser un avis</a></li>
+              <li><a class="dropdown-item" href="{{ path('opinions_index')}}">Voir les avis clients</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>   
         <div class="nav-item">
           <a class="nav-link primary-font" href="{{ path('app_logout')}}">Se déconnecter</a>
         </div>
