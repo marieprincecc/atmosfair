@@ -135,7 +135,7 @@ class CartController extends AbstractController
 
                     return $this->redirectToRoute("customer_recap_order");
                 }
-                return $this->render("orderbuy/show.html.twig",[
+                return $this->render("orderbuy/recap_show.html.twig",[
                     'detailCart' => $detailCart,
                     'form' => $form->createView(),
                     'totalCart' => $totalCart

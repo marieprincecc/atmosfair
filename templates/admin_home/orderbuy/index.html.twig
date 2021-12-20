@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Clients</th>
                 <th>Total</th>
                 <th>TotalTTC</th>
                 <th>Status</th>
@@ -20,6 +21,7 @@
         {% for orderbuy in orderbuys %}
             <tr>
                 <td>{{ orderbuy.id }}</td>
+                <td>{{ orderbuy.user.famillyName }} {{ orderbuy.user.famillyName }}</td>
                 <td>{{ orderbuy.total }}</td>
                 <td>{{ orderbuy.totalTTC }}</td>
                 <td>{{ orderbuy.status }}</td>

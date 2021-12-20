@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Orderbuy;
 use App\Form\OrderbuyType;
+use App\Entity\Orderdetails;
+use App\Repository\ProductRepository;
 use App\Repository\OrderbuyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\OrderdetailsRepository;
@@ -12,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use function PHPUnit\Framework\countOf;
 
 class OrderbuyController extends AbstractController
 {
@@ -25,11 +28,14 @@ class OrderbuyController extends AbstractController
 
 
     #[Route('admin/orderbuy/{id}', name: 'admin_orderbuy_show', methods: ['GET'])]
-    public function show(int $id, Orderbuy $orderbuy, OrderdetailsRepository $orderdetailsRepository): Response
-    {
+    public function show(int $id, Orderbuy $orderbuy, Orderdetails $orderdetail, OrderdetailsRepository $orderdetailsRepository): Response
+    {  
+
         return $this->render('admin_home/orderbuy/show.html.twig', [
             'orderbuy' => $orderbuy,
             'orderdetails' => $orderbuy->getOrderdetails(),
+            
+            
         ]);
     }
 

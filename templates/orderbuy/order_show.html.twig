@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Clients</th>
                 <th>Total</th>
                 <th>TotalTTC</th>
                 <th>Status</th>
@@ -21,7 +20,6 @@
        
             <tr>
                 <td>{{ orderbuy.id }}</td>
-                <td>{{ orderbuy.user.famillyName }} {{ orderbuy.user.famillyName }}</td>
                 <td>{{ orderbuy.total }}</td>
                 <td>{{ orderbuy.totalTTC }}</td>
                 <td>{{ orderbuy.status }}</td>
@@ -50,10 +48,7 @@
                 <td>{{ orderdetail.quantity }}</td>
                 <td>{{ orderdetail.priceTotal }}</td>
                 
-                <td>
-                  
-                    <a href="{{ path('admin_orderdetails_edit', {'id': orderdetail.id}) }}">edit</a>
-                </td>
+                
             </tr>
         {% else %}
             <tr>

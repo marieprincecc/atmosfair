@@ -23,9 +23,12 @@ class OrderbuyController extends AbstractController
 {
     #[Route('user/orderbuy', name: 'orderbuy_index', methods: ['GET'])]
     public function index(OrderbuyRepository $orderbuyRepository): Response
-    {
+    {   
+        /** @var User $user */
+        $user = $this->getUser();
+
         return $this->render('orderbuy/index.html.twig', [
-            'orderbuys' => $orderbuyRepository->findAll(),
+            'orderbuys' => $orderbuyRepository->findByUser($user),
         ]);
     }
 
@@ -34,7 +37,7 @@ class OrderbuyController extends AbstractController
     #[Route('user/orderbuy/{id}', name: 'orderbuy_show', methods: ['GET'])]
     public function show(int $id, Orderbuy $orderbuy, OrderdetailsRepository $orderdetailsRepository): Response
     {
-        return $this->render('orderbuy/show.html.twig', [
+        return $this->render('orderbuy/order_show.html.twig', [
             'orderbuy' => $orderbuy,
             'orderdetails' => $orderdetailsRepository->findAll($id),
         ]);
