@@ -1,0 +1,43 @@
+{% extends 'admin_home/base_admin.html.twig' %}
+
+{% block title %}Orderbuy index{% endblock %}
+
+{% block body %}
+    <h1>Orderbuy index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Total</th>
+                <th>TotalTTC</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for orderbuy in orderbuys %}
+            <tr>
+                <td>{{ orderbuy.id }}</td>
+                <td>{{ orderbuy.total }}</td>
+                <td>{{ orderbuy.totalTTC }}</td>
+                <td>{{ orderbuy.status }}</td>
+                <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('orderbuy_show', {'id': orderbuy.id}) }}">show</a>
+                        {{ include('admin_home/orderbuy/_delete_form.html.twig') }}
+
+                    <a href="{{ path('admin_orderbuy_edit', {'id': orderbuy.id}) }}"><i class="fas fa-pencil-alt"></i> Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+{% endblock %}
