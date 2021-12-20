@@ -36,7 +36,7 @@ class OrderbuyController extends AbstractController
 
     #[Route('user/orderbuy/{id}', name: 'orderbuy_show', methods: ['GET'])]
     public function show(int $id, Orderbuy $orderbuy, OrderdetailsRepository $orderdetailsRepository): Response
-    {
+    {  
         return $this->render('orderbuy/order_show.html.twig', [
             'orderbuy' => $orderbuy,
             'orderdetails' => $orderdetailsRepository->findAll($id),

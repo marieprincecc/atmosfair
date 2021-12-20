@@ -48,6 +48,9 @@ a{
     text-decoration: none;
 }
 
+
+
+
 a:hover , .nav-link:hover
 {
     color:rgba(33, 64, 11, 0.5);

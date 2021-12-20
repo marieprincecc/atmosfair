@@ -1,4 +1,4 @@
-{% extends 'admin_home/base_admin.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Orderbuy index{% endblock %}
 
@@ -20,10 +20,11 @@
        
             <tr>
                 <td>{{ orderbuy.id }}</td>
-                <td>{{ orderbuy.total }}</td>
-                <td>{{ orderbuy.totalTTC }}</td>
+                <td>{{ orderbuy.total | euroPrice}}</td>
+                <td>{{ orderbuy.totalTTC | euroPrice }}</td>
                 <td>{{ orderbuy.status }}</td>
                 <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
+                 
                
             </tr>
         
@@ -47,7 +48,8 @@
                 <td>{{  orderdetail.product.name }}</td>
                 <td>{{ orderdetail.quantity }}</td>
                 <td>{{ orderdetail.priceTotal }}</td>
-                
+               
+                 
                 
             </tr>
         {% else %}

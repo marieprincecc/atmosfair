@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link primary-font dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            Polluants
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -29,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link primary-font dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
            Salles
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -41,7 +41,7 @@
       </ul>
     </div>
     <div class="nav-item">
-      <a class="nav-link primary-font" href="#">link-3</a>
+      <a class="nav-link primary-font" href="{{path('guide')}}">Guide</a>
     </div>   
     <div class="nav-item">
       <a class="nav-link primary-font" href="#">link-3</a>
@@ -52,7 +52,10 @@
         <div class="nav-item">
           <a class="nav-link primary-font" href="{{ path('admin_home')}}">Administration</a>
         </div>
-      {% endif %}  
+      {% endif %} 
+       <div class="nav-item">
+          <a class="nav-link primary-font" href="{{ path('orderbuy_index')}}">Mes commandes</a>
+        </div>
         <div class="nav-item">
           <a class="nav-link primary-font" href="{{ path('app_logout')}}">Se déconnecter</a>
         </div>
