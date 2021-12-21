@@ -23,9 +23,19 @@ body
     background-color: #bfa095;
 }
 
+.tertiary-bg
+{
+    background-color: #21400B; 
+}
+
 .primary-font
 {
     color: #21400B;
+}
+
+.secondary-font
+{
+    color: #ebeff2;
 }
 
 .button
@@ -54,6 +64,11 @@ a{
 a:hover , .nav-link:hover
 {
     color:rgba(33, 64, 11, 0.5);
+}
+
+#admin  .nav-link:hover
+{
+    color: #bfa095 !important;
 }
 
 #hero{
@@ -86,4 +101,13 @@ a:hover , .nav-link:hover
    justify-content: center;
    
     font-style: italic;
+}
+.footer
+{
+    background-color: rgba(191, 160, 149, 0.16);
+}
+
+.contact
+{
+    background-color: rgba(123, 166, 94, 0.14);
 }

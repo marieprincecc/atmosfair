@@ -22,6 +22,8 @@ public function contact(Request $request,MailerService $mailerService)
         
         $data['content']=$parameters->get('content');
         $data['mail']=$parameters->get('mail');
+        $data['nom']=$parameters->get('nom');
+        $data['prenom']=$parameters->get('prenom');
        
        $mailerService->sendContactMail($data);
     }

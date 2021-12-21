@@ -1,30 +1,33 @@
-<nav class="navbar navbar-expand-lg secondary-bg">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
-     <div class="nav-item">
-          <a class="navbar-brand " href="{{ path('home')}}">
-      <img src="{{ asset('assets/img/logo.png')}}" alt="Logo atmosphere" >
-      </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link active primary-font" aria-current="page" href="{{ path('product_index') }}">Produits</a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link primary-font" href="{{ path('product_new')}}">Ajouter un produit</a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link primary-font" href="{{ path('admin_orderbuy_index')}}">Gerer les commandes</a>
-        </div>
-         <div class="nav-item">
-          <a class="nav-link primary-font" href="{{ path('admin_opinions_index')}}">Gerer les avis</a>
-        </div>
-         <div class="nav-item">
-          <a class="nav-link primary-font" href="{{ path('home')}}">Retour</a>
-        </div>
-         <div class="nav-item">
-              <a class="nav-link primary-font" href="{{ path('app_logout')}}">Se déconnecter</a>
+<nav id="admin" class="navbar navbar-expand-lg tertiary-bg">
+    <div class="container-fluid d-flex justify-content-around">
+            <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
+                <div class="nav-item">
+                    <a class="nav-link secondary-font" href="{{ path('home')}}"> <i class="fas fa-store-alt"></i> <br>Retour boutique</a>
+                </div>
+                 <div class="nav-item">
+                    <a class="nav-link secondary-font" aria-current="page" href="{{ path('product_index') }}">Produits</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link secondary-font" href="{{ path('product_new')}}">Ajouter un produit</a>
+                </div>
             </div>
-        
+            <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
+                <div class="nav-item">
+                    <a class="navbar-brand " href="{{ path('home')}}">
+                        <img src="{{ asset('assets/img/logo.png')}}" alt="Logo atmosphere" >
+                    </a>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
+                <div class="nav-item">
+                    <a class="nav-link secondary-font" href="{{ path('admin_orderbuy_index')}}">Gerer les commandes</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link secondary-font" href="{{ path('admin_opinions_index')}}">Gerer les avis</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link secondary-font" href="{{ path('app_logout')}}"> <i class="fas fa-door-open"></i> <br>Se déconnecter </a>
+                </div>
+            </div>
     </div>
-  </div>
 </nav>

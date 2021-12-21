@@ -33,7 +33,11 @@ class MailerService
                    
                     'content' => $data['content'],
                     
-                    'mail' => $data['mail']
+                    'mail' => $data['mail'],
+
+                    'nom' => $data['nom'],
+
+                    'prenom' => $data['prenom']
                     
                 ])
             ;
