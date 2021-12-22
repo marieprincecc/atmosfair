@@ -22,10 +22,10 @@
             <tr>
                 <td>{{ orderbuy.id }}</td>
                 <td>{{ orderbuy.user.famillyName }} {{ orderbuy.user.famillyName }}</td>
-                <td>{{ orderbuy.total }}</td>
-                <td>{{ orderbuy.totalTTC }}</td>
+                <td>{{ orderbuy.total | euroPrice}}</td>
+                <td>{{ orderbuy.totalTTC | euroPrice}}</td>
                 <td>{{ orderbuy.status }}</td>
-                <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
+                <td>{{ orderbuy.date ? orderbuy.date|date('d-m-Y') : '' }}</td>
                
             </tr>
         
@@ -48,7 +48,7 @@
             <tr>
                 <td>{{  orderdetail.product.name }}</td>
                 <td>{{ orderdetail.quantity }}</td>
-                <td>{{ orderdetail.priceTotal }}</td>
+                <td>{{ orderdetail.priceTotal | euroPrice}}</td>
                 
                 <td>
                   

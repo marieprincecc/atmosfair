@@ -115,8 +115,8 @@ class CartService
     {
         $total = $this->getTotal();
         $livraison = 0;
-        if ($total<29) {
-            $livraison = 5;
+        if ($total<2900) {
+            $livraison = 500;
         }
         else{
             $livraison = 0;

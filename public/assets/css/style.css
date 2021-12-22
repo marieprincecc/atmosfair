@@ -102,7 +102,7 @@ a:hover , .nav-link:hover
    
     font-style: italic;
 }
-.footer
+footer
 {
     background-color: rgba(191, 160, 149, 0.16);
 }
@@ -110,4 +110,13 @@ a:hover , .nav-link:hover
 .contact
 {
     background-color: rgba(123, 166, 94, 0.14);
+}
+.names
+{
+    width: 50%;
+}
+
+.hidden
+{
+    overflow: hidden;
 }

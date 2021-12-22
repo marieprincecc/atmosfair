@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ orderdetail.id }}</td>
                 <td>{{ orderdetail.quantity }}</td>
-                <td>{{ orderdetail.priceTotal }}</td>
+                <td>{{ orderdetail.priceTotal | euroPrice}}</td>
                 <td>
                     <a href="{{ path('orderdetails_show', {'id': orderdetail.id}) }}">show</a>
                     <a href="{{ path('orderdetails_edit', {'id': orderdetail.id}) }}">edit</a>

@@ -33,6 +33,7 @@ security:
                 lifetime: 600
                 max_uses: 5
                 success_handler: App\Security\Authentication\AuthenticationSuccessHandler 
+                
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

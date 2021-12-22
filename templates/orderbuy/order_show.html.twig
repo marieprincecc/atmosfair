@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Total</th>
-                <th>TotalTTC</th>
+                <th>TotalTTC <br><em>(avec livraison)</em></th>
                 <th>Status</th>
                 <th>Date</th>
                 
@@ -23,7 +23,7 @@
                 <td>{{ orderbuy.total | euroPrice}}</td>
                 <td>{{ orderbuy.totalTTC | euroPrice }}</td>
                 <td>{{ orderbuy.status }}</td>
-                <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
+                <td>{{ orderbuy.date ? orderbuy.date|date('d-m-Y') : '' }}</td>
                  
                
             </tr>
@@ -47,7 +47,7 @@
             <tr>
                 <td>{{  orderdetail.product.name }}</td>
                 <td>{{ orderdetail.quantity }}</td>
-                <td>{{ orderdetail.priceTotal }}</td>
+                <td>{{ orderdetail.priceTotal | euroPrice }}</td>
                
                  
                 

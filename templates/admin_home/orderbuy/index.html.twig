@@ -22,10 +22,10 @@
             <tr>
                 <td>{{ orderbuy.id }}</td>
                 <td>{{ orderbuy.user.famillyName }} {{ orderbuy.user.famillyName }}</td>
-                <td>{{ orderbuy.total }}</td>
-                <td>{{ orderbuy.totalTTC }}</td>
+                <td>{{ orderbuy.total | euroPrice }}</td>
+                <td>{{ orderbuy.totalTTC | euroPrice}}</td>
                 <td>{{ orderbuy.status }}</td>
-                <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
+                <td>{{ orderbuy.date ? orderbuy.date|date('d-m-Y') : '' }}</td>
                 <td>
                     <a href="{{ path('admin_orderbuy_show', {'id': orderbuy.id}) }}">show</a>
                         {{ include('admin_home/orderbuy/_delete_form.html.twig') }}

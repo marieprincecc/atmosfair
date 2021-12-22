@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Total</th>
-                <th>TotalTTC</th>
+                <th>TotalTTC <br><em>(avec livraison)</em></th>
                 <th>Status</th>
                 <th>Date</th>
                 <th>actions</th>
@@ -20,10 +20,10 @@
         {% for orderbuy in orderbuys %}
             <tr>
                 <td>{{ orderbuy.id }}</td>
-                <td>{{ orderbuy.total }}</td>
-                <td>{{ orderbuy.totalTTC }}</td>
+                <td>{{ orderbuy.total | euroPrice }}</td>
+                <td>{{ orderbuy.totalTTC | euroPrice }}</td>
                 <td>{{ orderbuy.status }}</td>
-                <td>{{ orderbuy.date ? orderbuy.date|date('Y-m-d') : '' }}</td>
+                <td>{{ orderbuy.date ? orderbuy.date|date('d-m-Y') : '' }}</td>
                 <td>
                     <a href="{{ path('orderbuy_show', {'id': orderbuy.id}) }}">show</a>
                     

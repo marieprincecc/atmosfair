@@ -39,6 +39,7 @@ class OrderbuyService
              $orderdetails = new Orderdetails();
              $orderdetails->setProduct($item->getProduct());
              $orderdetails->setQuantity($item->getQty());
+             $orderdetails->setPriceTotal($item->getProduct()->getPrice() * $item->getQty());
              $orderdetails->setOrderbuyId($orderbuy);
              $this->em->persist($orderdetails);
           }
