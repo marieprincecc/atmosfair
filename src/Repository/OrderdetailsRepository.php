@@ -19,9 +19,9 @@ class OrderdetailsRepository extends ServiceEntityRepository
         parent::__construct($registry, Orderdetails::class);
     }
 
-    // /**
-    //  * @return Orderdetails[] Returns an array of Orderdetails objects
-    //  */
+    /**
+    * @return Orderdetails[] Returns an array of Orderdetails objects
+    */
     
     public function findByOrder($value)
     {
