@@ -23,7 +23,7 @@ class OrderbuyRepository extends ServiceEntityRepository
     //  * @return Orderbuy[] Returns an array of Orderbuy objects
     //  */
     
-    public function findByUser($value)
+   /* public function findByUser($value)
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.user = :val')
