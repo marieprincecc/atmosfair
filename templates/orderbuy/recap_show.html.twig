@@ -46,6 +46,9 @@
                     <div class="card-header">
                         <h3 class="text-center">Paiement en ligne</h3>
                     </div>
+                    <div>
+                        <a href="{{path('cgv')}}">CGV</a>
+                    </div>
                     <div class="card-body">
                         {% if app.user.adress is not same as null %}
                             <form action="{{ path('create_checkout_session') }}" method="POST">
