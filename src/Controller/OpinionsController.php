@@ -13,7 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Loader\Configurator\security;
 
-
+/**
+* @Route("/{_locale<%app.supported_locales%>}")
+*/
 class OpinionsController extends AbstractController
 {
     #[Route('/opinions/liste', name: 'opinions_index', methods: ['GET'])]

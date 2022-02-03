@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+* @Route("/{_locale<%app.supported_locales%>}")
+*/
 class CartController extends AbstractController
 {
     /**

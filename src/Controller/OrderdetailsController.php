@@ -10,8 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-#[Route('/orderdetails')]
+/**
+* @Route("/{_locale<%app.supported_locales%>}")
+*/
+#[Route('/{_locale<%app.supported_locales%>}/orderdetails')]
 class OrderdetailsController extends AbstractController
 {
     #[Route('/', name: 'orderdetails_index', methods: ['GET'])]

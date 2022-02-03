@@ -20,6 +20,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
+/**
+* @Route("/{_locale<%app.supported_locales%>}")
+*/
 class StripeController extends AbstractController
 {
     #[Route('/create-checkout-session', name: 'create_checkout_session')]  

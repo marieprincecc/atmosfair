@@ -13,6 +13,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
+/**
+* @Route("/{_locale<%app.supported_locales%>}")
+*/
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]

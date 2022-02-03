@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+* @Route("/{_locale<%app.supported_locales%>}")
+*/
 class ProductController extends AbstractController
 {
     #[Route('/product/liste', name: 'product_customer_index', methods: ['GET'])]

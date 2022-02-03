@@ -9,6 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+* @Route("/{_locale<%app.supported_locales%>}")
+*/
 class ContactController extends AbstractController
 {
 
