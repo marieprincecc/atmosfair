@@ -2,58 +2,76 @@
 {% block title %}Product{% endblock %}
 
 {% block body %}
-    <h1>{{ product.name }}</h1>
-      <div class="col-12 mt-3">
-            {% include "shared/_messages_flash.html.twig" %}
+<div class="layout-product">
+    <div class="d-flex justify-content-between align-items-baseline">
+        <div class="d-flex align-items-baseline productName mt-3 w-50">
+            <h1 >{{ product.name }}</h1>
+            <h2>{{ product.price | euroPrice }}</h2>
         </div>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Name</th>
-                <td>{{ product.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Taille</th>
-                <td>{{ product.greatness }} cm</td>
-            </tr>
-            <tr>
-                <th>Pot</th>
-                <td>{{ product.pot }} Ø</td>
-            </tr>
-            <tr>
-                <th>Toxicity</th>
-                <td>{{ product.toxicity }}</td>
-            </tr>
-            <tr>
-                <th>Familly</th>
-                <td>{{ product.familly }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.price | euroPrice }}</td>
-            </tr>
-            <tr>
-                <th>Water</th>
-                <td>{{ product.water }}</td>
-            </tr>
-            <tr>
-                <th>Entretient</th>
-                <td>{{ product.entretient }}</td>
-            </tr>
-            <tr>
-                
-                 <img src="{{ asset(product.pathImage) }}" alt="{{ product.name }}" >
-            </tr>
-        </tbody>
-    </table>
-
-    <a  class="btn button" href="{{ path('product_customer_index') }}">back to list</a>
-
-    <a class="btn button" href="{{ path('add_product',{'id' : product.id}) }}">Ajouter au Panier</a>
- 
+        <div class="d-flex align-items-baseline justify-content-end productName my-3">
+            <a class="btn button" href="{{ path('add_product',{'id' : product.id}) }}"><i class="fas fa-cart-arrow-down"></i></a>
+            <a  class="btn button" href="{{ path('product_customer_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+        </div>
+    </div>    
+    <div class="col-12 mt-3">
+        {% include "shared/_messages_flash.html.twig" %}
+    </div>
+    <div class="d-flex flex-column flex-md-row">
+        <img class="mt-3 mb-3 show-product" src="{{ asset(product.pathImage) }}" alt="{{ product.name }}" >
+        <table class="table m-3">
+            <tbody>
+                <tr class='d-sm-flex flex-column d-md-table-row'>
+                    <th>Famille</th>
+                    <td>{{ product.familly }}</td>
+                </tr>
+                <tr class='d-flex flex-column d-md-table-row'>
+                    <th>Description</th>
+                    <td>{{ product.description }}</td>
+                </tr>
+                <tr class='d-flex flex-column d-md-table-row'>
+                    <th>Besoin en eau</th>
+                    {% if product.water =='1' %}
+                        <td><i class="fas fa-tint blue"></i></td>
+                    {% elseif product.water =='2' %}
+                        <td><i class="fas fa-tint blue"></i></td>
+                        <td><i class="fas fa-tint blue"></i></td>
+                    {% elseif product.water =='3' %}
+                        <td><i class="fas fa-tint blue"></i></td>
+                        <td><i class="fas fa-tint blue"></i></td>
+                        <td><i class="fas fa-tint blue"></i></td>
+                    {% else %}
+                        <td> <i class="fas fa-tint grey"></i>Non communiqué</td>
+                    {% endif %}
+                </tr>
+                <tr class='d-flex flex-column d-md-table-row'>
+                    <th>Difficulté d'entretient</th>
+                    {% if product.entretient =='1' %}
+                        <td><i class="fas fa-seedling green"></i></td>
+                    {% elseif product.entretient =='2' %}
+                        <td><i class="fas fa-seedling green"></i></td>
+                        <td><i class="fas fa-seedling green"></i></td>
+                    {% elseif product.entretient =='3' %}
+                        <td><i class="fas fa-seedling green"></i></td>
+                        <td><i class="fas fa-seedling green"></i></td>
+                        <td><i class="fas fa-seedling green"></i></td>
+                    {% else %}
+                        <td> <i class="fas fa-seedling grey"></i>Non communiqué</td>
+                    {% endif %}
+                </tr>
+                <tr class='d-flex flex-column d-md-table-row'>
+                    <th>Toxicité</th>
+                    <td>{{ product.toxicity }}</td>
+                </tr>
+                <tr class='d-flex flex-column d-md-table-row'>
+                    <th>Taille</th>
+                    <td>{{ product.greatness }} cm</td>
+                </tr>
+                <tr class='d-flex flex-column d-md-table-row'>
+                    <th>Diamètre du pot</th>
+                    <td>{{ product.pot }} Ø</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

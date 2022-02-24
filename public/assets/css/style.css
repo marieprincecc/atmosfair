@@ -141,3 +141,40 @@ footer
 {
     max-width: 50%;
 }
+
+.grey
+{
+    color: #313d4f;
+}
+
+.blue
+{
+    color: #4287f5;
+}
+
+.green
+{
+    color: #21400b;
+}
+
+.layout-product
+{
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.productName > h1, .productName > a
+{
+    margin-right: 5%;
+}
+
+.show-product
+{
+    max-height: 450px;
+    object-fit: cover;
+    object-position: center;
+}
+ .productName
+ {
+     flex:content;
+ }
