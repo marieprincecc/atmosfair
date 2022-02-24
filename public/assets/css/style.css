@@ -136,3 +136,8 @@ footer
 {
     width: -moz-available;
 }
+
+#filterByName
+{
+    max-width: 50%;
+}
