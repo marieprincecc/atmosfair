@@ -120,3 +120,19 @@ footer
 {
     overflow: hidden;
 }
+
+.cardProduct
+{
+    width: 255px;
+}
+
+.card-header
+{
+    height:240px;
+    overflow: hidden;
+}
+
+.imageCard
+{
+    width: -moz-available;
+}

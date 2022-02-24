@@ -7,20 +7,20 @@
         <div class="row">
             <div class="col-12">
             {{ include('polluting/_form.html.twig') }}
-            <div class="d-flex flex-wrap">
+            <div class="d-flex flex-wrap justify-content-center justify-content-md-start">
                 {% for product in products %}
                 <div class="col-sm-12 col-md-6 col-lg-4 mt-3">
                     <div class="card cardProduct">
-                        <div class="card-header">
-                            <img src="{{ asset(product.pathImage) }}" alt="{{ product.name }}" class="w-100 imageCard">
+                        <div class="card-header p-0">
+                            <img src="{{ asset(product.pathImage) }}" alt="{{ product.name }}" class="h-100 imageCard">
                         </div>
-                        <div class="card-body">
+                        <div class="card-body p-2 d-flex justify-content-around">
                             <h5 class="text-center">{{ product.name }}</h5>
                             <p class="text-center">{{ product.price | euroPrice}}</p>
                         </div>
-                        <div class="card-footer">
-                        <a class="btn button " href="{{ path('product_user_show',{'id': product.id}) }}">Consulter</a>
-                            <a class="btn button" href="{{ path('add_product',{'id' : product.id}) }}">Ajouter au Panier</a>
+                        <div class="card-footer d-flex justify-content-around">
+                        <a class="btn button p-1" href="{{ path('product_user_show',{'id': product.id}) }}">Consulter</a>
+                            <a class="btn button p-1" href="{{ path('add_product',{'id' : product.id}) }}">Ajouter au Panier</a>
 
                         </div>
                     </div>
