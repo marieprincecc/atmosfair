@@ -193,6 +193,10 @@ footer
     padding: 4px;
     display: none !important;
   }
+  .only-mobile
+  {
+      display: none;
+  }
 
   @media only screen and (max-width: 1200px) {
     .navbar-mobile, .only-mobile{
