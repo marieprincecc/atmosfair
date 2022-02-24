@@ -1,0 +1,22 @@
+<div class="navbar-mobile d-flex flex-row justify-content-center">
+    <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="home" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('home') }}'">
+        <div class="mx-auto"><i class="fa fa-home"></i></div>
+        <div>Accueil</div>
+    </div>
+    <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="guide" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('guide') }}'">
+        <div class="mx-auto"><i class="fas fa-book-open"></i></div>
+        <div>Guide</div>
+    </div>
+    <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="product_customer_index" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('product_customer_index') }}'">
+        <div class="mx-auto"><i class="fas fa-store"></i></div>
+        <div>Produits</div>
+    </div>
+    <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="app_login" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('app_login') }}'">
+        <div class="mx-auto"><i class="fas fa-user"></i></div>
+        <div>Compte</div>
+    </div>
+    <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="cart_detail" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('cart_detail') }}'">
+        <div class="mx-auto"><i class="fas fa-shopping-bag "></i></div>
+        <div>Panier</div>
+    </div>
+</div>
