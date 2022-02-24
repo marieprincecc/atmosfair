@@ -11,10 +11,36 @@
         <div class="mx-auto"><i class="fas fa-store"></i></div>
         <div>Produits</div>
     </div>
+    {% if app.user %}
+     {% if app.user.roles[0] is same as "ROLE_USER" %}
+     <li class="nav-item dropdown">
+        <div class="navbar-mobile-item dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <div class="text-center"><i class="fas fa-user"></i> </br> Mon compte  </div>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="{{path('orderbuy_index')}}">Mes commandes</a></li>
+            <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnection</a></li>
+        </ul>
+     </li>
+        {% elseif app.user.roles[0] is same as "ROLE_ADMIN" %}
+        <li class="nav-item dropdown">
+        <div class="navbar-mobile-item dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <div class="text-center"><i class="fas fa-user"></i> </br> Mon compte  </div>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="{{path('admin_home')}}">Administration</a></li>
+            <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnection</a></li>
+        </ul>
+     </li>
+         
+     {% endif %}
+    
+    {% else %}
     <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="app_login" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('app_login') }}'">
         <div class="mx-auto"><i class="fas fa-user"></i></div>
         <div>Compte</div>
     </div>
+    {% endif %}
     <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="cart_detail" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('cart_detail') }}'">
         <div class="mx-auto"><i class="fas fa-shopping-bag "></i></div>
         <div>Panier</div>
