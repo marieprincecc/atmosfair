@@ -46,36 +46,46 @@ class ProductController extends AbstractController
         /**
         * @Route("product/polluting/{id}", name="product_polluting_show")
         */
-        public function productsByPolluting(int $id, PollutingRepository $pollutingRepository, ProductRepository $productRepository)
+        public function productsByPolluting(int $id, PollutingRepository $pollutingRepository, Request $request, ProductRepository $productRepository)
         {
         $polluting = $pollutingRepository->find($id);
-        
+        $search = new SearchProduct();
+
+        $form = $this->createForm(SearchProductType::class,$search);
+
+        $form->handleRequest($request);        
 
         if(!$polluting)
         {
         return $this->redirectToRoute("product_customer_index");
         }
 
-        return $this->render("polluting/show.html.twig",[
-        'products' => $polluting->getProductId()
+        return $this->render("product/index.html.twig",[
+        'products' => $polluting->getProductId(),
+        'form' => $form->createView()
         ]);
         } 
 
          /**
         * @Route("product/room/{id}", name="product_room_show")
         */
-        public function productsByRoom(int $id, RoomsRepository $roomsRepository, ProductRepository $productRepository)
+        public function productsByRoom(int $id, RoomsRepository $roomsRepository, Request $request, ProductRepository $productRepository)
         {
         $room = $roomsRepository->find($id);
-        
+        $search = new SearchProduct();
+
+        $form = $this->createForm(SearchProductType::class,$search);
+
+        $form->handleRequest($request);
 
         if(!$room)
         {
         return $this->redirectToRoute("product_customer_index");
         }
 
-        return $this->render("rooms/show.html.twig",[
-        'products' => $room->getProductId()
+        return $this->render("product/index.html.twig",[
+        'products' => $room->getProductId(),
+        'form' => $form->createView()
         ]);
         } 
 
