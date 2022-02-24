@@ -1,0 +1,30 @@
+<div class="navbar-mobile d-flex flex-row justify-content-center">
+    <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="admin_home" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('admin_home') }}'">
+        <div class="mx-auto"><i class="fas fa-chevron-circle-left"></i></div>
+        <div>Retour</div>
+    </div>
+    <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="product_new" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('product_new') }}'">
+        <div class="mx-auto"><i class="fas fa-plus"></i></div>
+        <div>Produit</div>
+    </div>
+    <li class="nav-item dropdown">
+        <div class="navbar-mobile-item dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <div class="text-center"><i class="fas fa-pen"></i> </br> Gerer  </div>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="{{path('product_index')}}">Produits</a></li>
+            <li><a class="dropdown-item" href="{{path('admin_orderbuy_index')}}">Commandes</a></li>
+            <li><a class="dropdown-item" href="{{path('admin_opinions_index')}}">Avis</a></li>
+
+        </ul>
+     </li>
+     
+     <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="home" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('home') }}'">
+        <div class="mx-auto"><i class="fas fa-store-alt"></i></div>
+        <div>Retour Boutique</div>
+    </div>   
+    <div class="nav-item navbar-mobile-item{% if app.request.get('_route')=="app_logout" %}-active{% endif %} d-flex flex-column justify-content-center" onclick="location.href='{{ path('app_logout') }}'">
+        <div class="mx-auto"><i class="fas fa-door-open"></i></div>
+        <div>Déconnexion</div>
+    </div>
+</div>

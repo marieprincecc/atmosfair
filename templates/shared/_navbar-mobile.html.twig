@@ -18,8 +18,10 @@
            <div class="text-center"><i class="fas fa-user"></i> </br> Mon compte  </div>
         </div>
         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="{{path('opinions_new')}}">Laisser un avis</a></li>
+            <li><a class="dropdown-item" href="{{path('opinions_index')}}">Voir les avis</a></li>
             <li><a class="dropdown-item" href="{{path('orderbuy_index')}}">Mes commandes</a></li>
-            <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnection</a></li>
+            <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a></li>
         </ul>
      </li>
         {% elseif app.user.roles[0] is same as "ROLE_ADMIN" %}
@@ -29,7 +31,7 @@
         </div>
         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><a class="dropdown-item" href="{{path('admin_home')}}">Administration</a></li>
-            <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnection</a></li>
+            <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a></li>
         </ul>
      </li>
          
