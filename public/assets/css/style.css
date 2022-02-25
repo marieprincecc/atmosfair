@@ -262,3 +262,19 @@ footer
         margin-top:150px;
     }
 }
+
+.imageProductCart
+{
+    max-width: 80px;
+    border-radius: 25%;
+}
+
+.wCart{
+    width: 20%;
+}
+
+.cart{
+    padding: 20px;
+    background-color: #FFFFFF;
+    max-width: 90%;
+}
