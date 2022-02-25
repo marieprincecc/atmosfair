@@ -3,5 +3,11 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-<h1><em>Administration</em></h1>
+<h1 class="text-center"><em>Bienvenu dans votre administration</em></h1>
+<div class="d-flex flex-wrap justify-content-center">
+    <a class="aminHome" href="{{ path('product_new') }}"><i class="fas fa-plus"></i></a>
+    <a class="aminHome" href="{{ path('admin_orderbuy_index') }}"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a class="aminHome" href="{{ path('admin_opinions_index') }}"><i class="fas fa-comment"></i></a>
+    <a class="aminHome" href="{{ path('app_logout') }}"><i class="fa-solid fa-power-off"></i></a>
+</div>
 {% endblock %}

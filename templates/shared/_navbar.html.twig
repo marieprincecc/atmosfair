@@ -2,7 +2,7 @@
     <div class="container-fluid d-flex justify-content-around">
             <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
                 <div class="nav-item">
-                    <a class="nav-link primary-font" aria-current="page" href="{{ path('product_customer_index')}}">Produits</a>
+                    <a class="nav-link primary-font me-3" aria-current="page" href="{{ path('product_customer_index')}}">Produits</a>
                 </div>
                  <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                     <ul class="navbar-nav">
@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarText">
             {% if app.user %}
                 <div class="nav-item">
-                    <a class="nav-link primary-font" href="{{ path('orderbuy_index')}}">Mes commandes</a>
+                    <a class="nav-link primary-font me-3" href="{{ path('orderbuy_index')}}">Mes commandes</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                     <ul class="navbar-nav">
@@ -63,12 +63,12 @@
                     </ul>
                 </div>
                 {% if app.user.roles[0] is same as "ROLE_ADMIN" %}
-                    <div class="nav-item">
-                        <a class="nav-link primary-font" href="{{ path('admin_home')}}"> <i class="fas fa-house-user"></i> <br>Administration</a>
+                    <div class="nav-item me-3">
+                        <a class="nav-link primary-font" href="{{ path('admin_home')}}"> <i class="fas fa-house-user"></i></a>
                     </div>
                 {% endif %}   
-                <div class="nav-item">
-                    <a class="nav-link primary-font" href="{{ path('app_logout')}}"> <i class="fas fa-door-open"></i> <br>Se déconnecter </a>
+                <div class="nav-item me-3">
+                    <a class="nav-link primary-font" href="{{ path('app_logout')}}"> <i class="fas fa-door-open"></i> </a>
                 </div>
                 {% else %}
                 <div class="nav-item">
@@ -78,7 +78,7 @@
                     <a class="nav-link primary-font" href="{{ path('app_register')}}">Créer Un compte</a>
                 </div>
                 {% endif %}
-                <div class="nav-item">
+                <div class="nav-item me-3">
                     <a class="nav-link primary-font" href="{{ path('cart_detail') }}"><i class="fas fa-shopping-bag "></i> </a>
                 </div>
             </div>

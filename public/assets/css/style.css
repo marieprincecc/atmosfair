@@ -285,3 +285,20 @@ footer
     }
 }
 
+.aminHome
+{
+    padding: 90px;
+    background-color: #21400b;
+    color: #ebeff2;
+    font-size: xxx-large;
+    border-radius: 25%;
+    margin: 20px;
+
+    text-align: center;
+    
+    
+}
+
+.aminHome:hover{
+    color: rgba(119, 166, 50, 0.75);;
+}

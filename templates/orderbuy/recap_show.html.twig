@@ -1,55 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commande en cours{% endblock %}
+{% block title %}Validation commande{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Commande en cours</h1>
+    <h1 class="text-center">Validation commande</h1>
 
-<div class="d-flex">
-    <table class="table">
-    <div>
-        <tbody>
-        
-             {% for item in detailCart %}
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="d-flex flex-column align-items-center justify-content-center">
-                                                        <p>{{ item.product.name }}</p>
-                                                        <a class="btn btn-link text-danger btn-sm" href="{{ path('remove_item_cart',{'id': item.product.id }) }}"><i class="fas fa-trash"></i> Supprimer</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>{{ item.product.price | euroPrice }}</td>
-                                            <td>
-                                                <a class="btn btn-dark" href="{{ path('decrement_product_cart',{'id': item.product.id}) }}"><i class="fas fa-minus-circle"></i></a>
-                                                <button class="btn btn-light">{{ item.qty }}</button>
-                                                <a class="btn btn-dark" href="{{ path('add_product',{'id': item.product.id}) }}?returnToCart=true"><i class="fas fa-plus-circle"></i></a>
-                                            </td>
-                                            <td>{{ item.total | euroPrice }}</td>
-                                        </tr>
-                                    {% endfor%}
-        </div>
-        <div class="d-flex flex-column col-sm-12 col-md-6">
+<div class="d-flex justify-content-center">            
+    <div class="d-flex flex-column col-sm-12 col-md-6">
            {% if app.user %}
-                <div class="card">
-                    <div class="card-header">
+               
+                    <div class="cart">
                         <h3 class="text-center">Adresse de livraison</h3>
-                     </div>
+                    
                  
-                    <div class="card-body">
+                    <div >
                       {{ include('adress/_form.html.twig') }}
                     </div>
                 </div>
 
-                <div class="card mt-3">
-                    <div class="card-header">
+                <div class="cart">
+                  
                         <h3 class="text-center">Paiement en ligne</h3>
-                    </div>
+                
                     <div>
-                        <a href="{{path('cgv')}}">CGV</a>
+                     <div class="form-group">
+                        <input class="form-check-input" type="checkbox"  name="cgv">
+                        <label class="form-check-label" for="cgv"> <a href="{{path('cgv')}}">CGV</a></label>
+                    </div> 
+                       
                     </div>
-                    <div class="card-body">
+                    
                         {% if app.user.adress is not same as null %}
                             <form action="{{ path('create_checkout_session') }}" method="POST">
                                 <button type="submit" id="checkout-button" class="btn button w-100">Paiement sur stripe</button>
@@ -57,7 +37,7 @@
                         {% else %}
                             <p>Veuillez configurer votre adresse pour pouvoir finaliser la commande.</p>
                         {% endif %}
-                    </div>
+                
                 </div>
 
             {% else %}

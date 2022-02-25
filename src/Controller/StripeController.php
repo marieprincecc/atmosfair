@@ -57,7 +57,7 @@ class StripeController extends AbstractController
                 'quantity' => $item->getQty()
             ];
         }
-
+        
         $checkout_session = Session::create([
             'customer_email' => $user->getEmail(),
             'payment_method_types' => [
