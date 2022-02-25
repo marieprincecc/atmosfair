@@ -22,12 +22,12 @@
                                 <div class="d-flex detailCart justify-content-between mb-2">
                                     <img src=" {{ item.product.pathImage }}" alt="{{ item.product.name }}" class="imageProductCart wCart">
                                     <div class="produit d-flex flex-column wCart">
-                                        <div class="nom">{{ item.product.name }}</div>
-                                        <div class="prixU">{{ item.product.price | euroPrice }}</div>
+                                        <div class="nom only-desktop">{{ item.product.name }}</div>
+                                        <div class="prixU only-desktop">{{ item.product.price | euroPrice }}</div>
                                     </div>
                                     <div class="Qty d-flex wCart">
                                         <a class="btn " href="{{ path('decrement_product_cart',{'id': item.product.id}) }}"><i class="fas fa-minus-circle grey"></i></a>
-                                            <button class="btn btn-light">{{ item.qty }}</button>
+                                            <button class="btn btn-light p-0">{{ item.qty }}</button>
                                         <a class="btn " href="{{ path('add_product',{'id': item.product.id}) }}?returnToCart=true"><i class="fas fa-plus-circle grey"></i></a>
                                     </div>
                                     <div class="total wCart">{{ item.total | euroPrice }}</div>
