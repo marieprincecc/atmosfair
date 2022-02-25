@@ -4,6 +4,10 @@ body
 {
     font-family: 'Playfair Display', serif;
     background-color:#ebeff2 ;
+    object-fit: cover;
+    max-width: 100%;
+
+   
 }
 
 .title
@@ -36,6 +40,17 @@ body
 .secondary-font
 {
     color: #ebeff2;
+}
+
+.pad12
+{
+    padding: 12px;
+}
+
+.pad-y-12
+{
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .button
@@ -74,8 +89,13 @@ a:hover , .nav-link:hover
 #hero{
     background-image: url('../img/hero.jpg') !important;
     background-size: cover;
-    height: 90vh;
+   
     font-style: italic;
+}
+ @media only screen and (min-width: 1200px) {
+    #hero{
+        height: 90vh;
+    }
 }
 
 .center
@@ -188,7 +208,7 @@ footer
     bottom: 0;
     left: 0;
     z-index: 1030;
-    width:100%;
+    max-width:100%;
     height:60px;
     padding: 4px;
     display: none !important;
@@ -242,5 +262,3 @@ footer
         margin-top:150px;
     }
 }
-  
- 
