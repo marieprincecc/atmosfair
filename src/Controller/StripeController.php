@@ -20,9 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\LoginLink\LoginLinkHandlerInterface;
 
-/**
-* @Route("/{_locale<%app.supported_locales%>}")
-*/
+
 class StripeController extends AbstractController
 {
     #[Route('/create-checkout-session', name: 'create_checkout_session')]  
@@ -74,9 +72,7 @@ class StripeController extends AbstractController
           return $this->redirect($checkout_session->url);
     }
 
-        /**
-        * @Route("/redirectionPaiementReussi/{id}", name="redirection_paiement_reussi")
-        */
+        #[Route('/redirectionPaiementReussi/{id}', name:'redirection_paiement_reussi')]
         public function redirectionPaiementReussi(int $id ,LoginLinkHandlerInterface $loginLinkHandler, UserRepository $userRepository, Request $request)
         { 
         $user = $userRepository->find($id);
