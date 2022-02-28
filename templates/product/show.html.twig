@@ -30,33 +30,36 @@
                 </tr>
                 <tr class='d-flex flex-column d-md-table-row'>
                     <th>Besoin en eau</th>
+                    <td>
                     {% if product.water =='1' %}
-                        <td><i class="fas fa-tint blue"></i></td>
+                        <i class="fas fa-tint blue"></i>
                     {% elseif product.water =='2' %}
-                        <td><i class="fas fa-tint blue"></i></td>
-                        <td><i class="fas fa-tint blue"></i></td>
+                        <i class="fas fa-tint blue"></i>
+                       <i class="fas fa-tint blue"></i>
                     {% elseif product.water =='3' %}
-                        <td><i class="fas fa-tint blue"></i></td>
-                        <td><i class="fas fa-tint blue"></i></td>
-                        <td><i class="fas fa-tint blue"></i></td>
+                        <i class="fas fa-tint blue"></i>
+                        <i class="fas fa-tint blue"></i>
+                        <i class="fas fa-tint blue"></i>
                     {% else %}
-                        <td> <i class="fas fa-tint grey"></i>Non communiqué</td>
+                        <i class="fas fa-tint grey"></i>Non communiqué
                     {% endif %}
+                    </td>
                 </tr>
                 <tr class='d-flex flex-column d-md-table-row'>
                     <th>Difficulté d'entretient</th>
+                    <td>
                     {% if product.entretient =='1' %}
-                        <td><i class="fas fa-seedling green"></i></td>
+                       <i class="fas fa-seedling green"></i>
                     {% elseif product.entretient =='2' %}
-                        <td><i class="fas fa-seedling green"></i></td>
-                        <td><i class="fas fa-seedling green"></i></td>
-                    {% elseif product.entretient =='3' %}
-                        <td><i class="fas fa-seedling green"></i></td>
-                        <td><i class="fas fa-seedling green"></i></td>
-                        <td><i class="fas fa-seedling green"></i></td>
+                        <i class="fas fa-seedling green"></i>
+                       <i class="fas fa-seedling green"></i>
+                        <i class="fas fa-seedling green"></i>
+                        <i class="fas fa-seedling green"></i>
+                      <i class="fas fa-seedling green"></i>
                     {% else %}
-                        <td> <i class="fas fa-seedling grey"></i>Non communiqué</td>
+                        <i class="fas fa-seedling grey"></i>Non communiqué
                     {% endif %}
+                    </td>
                 </tr>
                 <tr class='d-flex flex-column d-md-table-row'>
                     <th>Toxicité</th>

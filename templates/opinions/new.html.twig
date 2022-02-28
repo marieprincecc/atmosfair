@@ -1,11 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Opinions{% endblock %}
+{% block title %}Donnez votre avis{% endblock %}
 
 {% block body %}
-    <h1>Create new Opinions</h1>
+<div class="d-flex flex-column align-items-center w-md-50">
+    <h1>Avis client</h1>
+      {% if app.user %}
+                 <p>Donnez nous votre avis</p>
 
     {{ include('opinions/_form.html.twig') }}
+    </div>
 
-    <a href="{{ path('opinions_index') }}">back to list</a>
+    <a href="{{ path('opinions_index') }}">Retour</a>
+            {% else %}
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Veuillez vous connecter</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Déjà un compte ? <a href="{{ path('app_login' )}}" class="btn button">Veuillez vous connecter</a></p>
+                        <hr>
+                        <p>Pas encore de compte ? <a href="{{ path('app_register' )}}" class="btn btn-link button">Veuillez en créer un</a></p>
+                    </div>
+                </div>
+            {% endif %}
+ 
+
 {% endblock %}

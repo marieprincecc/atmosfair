@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use PDO;
 use App\Entity\Opinions;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Opinions|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,9 +21,7 @@ class OpinionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Opinions::class);
     }
 
-    /**
-     * @return Opinions[] Returns an array of Opinions objects
-     */
+    
     public function findForHome()
     {
         return $this->createQueryBuilder('o')
@@ -33,6 +33,18 @@ class OpinionsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    
+    public function starsAvg()
+    {
+        return $this->createQueryBuilder('o')
+            ->select('AVG(o.stars)')
+            ->getQuery()
+            ->getResult()
+        ;
+       
+    }
+
     
 
     /*

@@ -13,7 +13,7 @@ body
 
 .grey
 {
-    color: #313d4f;
+    color: #313d4f !important;
 }
 
 .blue

@@ -18,11 +18,13 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\security;
 */
 class OpinionsController extends AbstractController
 {
-    #[Route('/opinions/liste', name: 'opinions_index', methods: ['GET'])]
+    #[Route('/opinions/liste', name: 'opinions_index')]
     public function index(OpinionsRepository $opinionsRepository): Response
-    {   
+    {   $moyenne = $opinionsRepository->starsAvg();
+      
         return $this->render('opinions/index.html.twig', [
             'opinions' => $opinionsRepository->findAll(),
+            'moyenne' => round($moyenne[0][1]),
         ]);
     }
 
@@ -30,22 +32,18 @@ class OpinionsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager)
     {   
         $opinion = new Opinions();
-
+ $form = $this->createForm(OpinionsType::class, $opinion);
+        $form->handleRequest($request);
         /** @var User $user */
         $user = $this->getUser();
 
-       
-        
-                
-        $form = $this->createForm(OpinionsType::class, $opinion);
-        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $opinion->setUser($user);
             $entityManager->persist($opinion);
             $entityManager->flush();
 
-            return $this->redirectToRoute('opinions_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('opinions_index', [], Response::HTTP_SEE_OTHER);           
         }
 
         return $this->renderForm('opinions/new.html.twig', [
