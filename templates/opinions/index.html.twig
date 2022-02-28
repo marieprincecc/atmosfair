@@ -17,8 +17,19 @@
         <tbody>
         {% for opinion in opinions %}
             <tr>
-                <td>{{ opinion.id }}</td>
-                <td>{{ opinion.stars }}</td>
+                <td>{{ opinion.user.name }}</td>
+                <td>
+                {% if opinion.stars == "1" %}
+                    <i class="fas fa-star"></i>
+                    {% elseif opinion.stars == "2" %}
+                     <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                     {% elseif opinion.stars == "3" %}
+                      <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                      {% elseif opinion.stars == "4" %}
+                       <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                       {% elseif opinion.stars == "5" %}
+                        <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                {% endif %}</td>
                 <td>{{ opinion.content }}</td>
                 <td>
                     <a href="{{ path('opinions_edit', {'id': opinion.id}) }}">edit</a>

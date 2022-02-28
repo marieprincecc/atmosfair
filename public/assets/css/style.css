@@ -11,6 +11,25 @@ body
    
 }
 
+.grey
+{
+    color: #313d4f;
+}
+
+.blue
+{
+    color: #4287f5;
+}
+
+.green
+{
+    color: #21400b;
+}
+
+.fa-star{
+    color: #f3a712;
+}
+
 .alert-isSuccessful
 {
     background-color: #3a7d4465;    
@@ -171,21 +190,6 @@ footer
 #filterByName
 {
     max-width: 50%;
-}
-
-.grey
-{
-    color: #313d4f;
-}
-
-.blue
-{
-    color: #4287f5;
-}
-
-.green
-{
-    color: #21400b;
 }
 
 .layout-product
