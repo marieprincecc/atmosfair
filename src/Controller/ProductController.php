@@ -24,9 +24,7 @@ class ProductController extends AbstractController
     {
 
         $search = new SearchProduct();
-        
         $form = $this->createForm(SearchProductType::class,$search);
-
         $form->handleRequest($request);
 
         $products = $paginator->paginate(
@@ -48,22 +46,20 @@ class ProductController extends AbstractController
         */
         public function productsByPolluting(int $id, PollutingRepository $pollutingRepository, Request $request, ProductRepository $productRepository)
         {
-        $polluting = $pollutingRepository->find($id);
-        $search = new SearchProduct();
+            $polluting = $pollutingRepository->find($id);
+            $search = new SearchProduct();
+            $form = $this->createForm(SearchProductType::class,$search);
+            $form->handleRequest($request);        
 
-        $form = $this->createForm(SearchProductType::class,$search);
+            if(!$polluting)
+            {
+              return $this->redirectToRoute("product_customer_index");
+            }
 
-        $form->handleRequest($request);        
-
-        if(!$polluting)
-        {
-        return $this->redirectToRoute("product_customer_index");
-        }
-
-        return $this->render("product/index.html.twig",[
-        'products' => $polluting->getProductId(),
-        'form' => $form->createView()
-        ]);
+            return $this->render("product/index.html.twig",[
+                'products' => $polluting->getProductId(),
+                'form' => $form->createView()
+            ]);
         } 
 
          /**
@@ -71,21 +67,19 @@ class ProductController extends AbstractController
         */
         public function productsByRoom(int $id, RoomsRepository $roomsRepository, Request $request, ProductRepository $productRepository)
         {
-        $room = $roomsRepository->find($id);
-        $search = new SearchProduct();
-
-        $form = $this->createForm(SearchProductType::class,$search);
-
-        $form->handleRequest($request);
+            $room = $roomsRepository->find($id);
+            $search = new SearchProduct();
+            $form = $this->createForm(SearchProductType::class,$search);
+            $form->handleRequest($request);
 
         if(!$room)
         {
-        return $this->redirectToRoute("product_customer_index");
+            return $this->redirectToRoute("product_customer_index");
         }
 
         return $this->render("product/index.html.twig",[
-        'products' => $room->getProductId(),
-        'form' => $form->createView()
+            'products' => $room->getProductId(),
+            'form' => $form->createView()
         ]);
         } 
 
