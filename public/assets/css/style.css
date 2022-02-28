@@ -11,6 +11,16 @@ body
    
 }
 
+.alert-isSuccessful
+{
+    background-color: #3a7d4465;    
+}
+
+.alert-notSucced
+{
+    background-color: #ef29178e;
+}
+
 .title
 {
     font-style: italic;

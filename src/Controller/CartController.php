@@ -27,13 +27,13 @@ class CartController extends AbstractController
         $product = $productRepository->find($id);
         if(!$product)
         {
-             $this->addFlash("danger","Le produit est introuvable.");
+             $this->addFlash("notSucced","Le produit est introuvable.");
              return $this->redirectToRoute("product_customer_index");
         }
 
         $cartService->addProduct($id);
 
-        $this->addFlash("success","Le produit a bien été ajouté.");
+        $this->addFlash("isSuccessful","Le produit a bien été ajouté.");
 
 
         $returnToCart = $request->query->get('returnToCart');
@@ -70,13 +70,13 @@ class CartController extends AbstractController
 
         if(!$product)
         {
-        $this->addFlash("danger","Le produit est introuvable.");
+        $this->addFlash("notSucced","Le produit est introuvable.");
         return $this->redirectToRoute("cart_detail");
         }
 
         $cartService->removeItem($id);
 
-        $this->addFlash("success","Le produit a bien été supprimé du panier.");
+        $this->addFlash("isSuccessful","Le produit a bien été supprimé du panier.");
         return $this->redirectToRoute("cart_detail");
         } 
 
@@ -88,13 +88,13 @@ class CartController extends AbstractController
             $product = $productRepository->find($id);
             if(!$product)
             {
-            $this->addFlash("danger","Le produit est introuvable.");
+            $this->addFlash("notSucced","Le produit est introuvable.");
             return $this->redirectToRoute("cart_detail");
             }
 
             $cartService->decrementProduct($id);
 
-            $this->addFlash("success","La quantité du produit a bien été décrémentée.");
+            $this->addFlash("isSuccessful","La quantité du produit a bien été décrémentée.");
             return $this->redirectToRoute("cart_detail");
             } 
 
@@ -133,7 +133,7 @@ class CartController extends AbstractController
                         $adress->setUser($user);
                         $em->persist($adress);
                     }
-                    $this->addFlash("success","L'adresse a bien été configurée.");
+                    $this->addFlash("isSuccessful","L'adresse a bien été configurée.");
                     $em->flush();
 
                    

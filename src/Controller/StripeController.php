@@ -103,7 +103,7 @@ class StripeController extends AbstractController
          $em->flush();
          $mailerService->sendCommandMail($user, $orderbuy);
 
-         $this->addFlash("success","Votre commande a bien été pris en compte.");
+         $this->addFlash("isSuccessful","Votre commande a bien été pris en compte.");
          $cartService->emptyCart();
          return $this->redirectToRoute("thanks");
     } 
@@ -111,7 +111,7 @@ class StripeController extends AbstractController
     #[Route('/paiementechoue', name: 'payment_cancel')] 
     public function paymentCancel()
     {
-        $this->addFlash("info","Votre commande n'a pu aboutir. Vous pouvez essayer avec une manière de paiement.");
+        $this->addFlash("notSucced","Votre commande n'a pu aboutir. Vous pouvez essayer avec une manière de paiement.");
         return $this->redirectToRoute("cart_detail");
     }
 

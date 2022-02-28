@@ -59,7 +59,7 @@ class ProductController extends AbstractController
             
             if(!$file)
             {
-                $this->addFlash('danger','Veuillez ajouter une image.');
+                $this->addFlash('notSucced','Veuillez ajouter une image.');
                return $this->redirectToRoute('product_new'); 
             }
             $handleImageService->save($file,$product);
